@@ -1,4 +1,4 @@
-# Riven Project 
+# Riven Academy
 
 Projeto de desenvolvimento web dedicado à Riven, campeã de League of Legends, criado como projeto pessoal e acadêmico na SPTech.
 
