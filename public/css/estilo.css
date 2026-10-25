@@ -105,10 +105,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .img-flower-1 {
   position: absolute;
-  left: 15%;
+  left: 8%;
   top: 570px;
   width: 300px;
   opacity: 0.8;
+  filter: contrast(1);
 }
 
 .destaque-challenger{
