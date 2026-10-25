@@ -25,6 +25,7 @@ h1, h2, h3, h4, h5, h6 {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  filter: saturate(0.5);
 }
 
 .header-home {
@@ -49,6 +50,7 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateX(-50%);
     width: 160px;
     height: auto;
+    filter: saturate(3.5);
 }
 
 .navegacao-home {
@@ -68,8 +70,38 @@ h1, h2, h3, h4, h5, h6 {
 
 
 .destaque-titulo {
-    color: #F9FFEE;
+    color: #FFFFFF;
     font-family: 'Cormorant Garamond', serif;
     font-size: 28px;
     margin: 0;
+}
+
+.section-inicial h1,p{
+  color: #ffffff;
+  margin-left: 100px;
+}
+
+.section-inicial h1{
+  font-weight: 100;
+  margin-top: 200px;
+  font-size: 50px;
+}
+
+.section-inicial p{
+  margin-top: 50px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 24px;
+}
+
+.img-flower-1 {
+  position: absolute;
+  left: 15%;
+  top: 572px;
+  width: 300px;
+  opacity: 0.8;
+}
+
+.destaque-challenger{
+  color: #108d35;
+  filter: saturate(0.5);
 }
