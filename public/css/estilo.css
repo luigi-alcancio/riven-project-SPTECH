@@ -26,3 +26,50 @@ h1, h2, h3, h4, h5, h6 {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.header-home {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px 40px;
+}
+
+.navegacao-home a {
+    color: #ffffff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    text-decoration: none;
+}
+
+.icon-riven {
+    position: absolute;
+    top: 55px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    height: auto;
+}
+
+.navegacao-home {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+}
+
+.navegacao-home ul {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+.destaque-titulo {
+    color: #F9FFEE;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    margin: 0;
+}
