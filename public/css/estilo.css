@@ -183,11 +183,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .autor{
-  position: absolute;
+  position:absolute;
   color: #FFFFFF;
-  font-size: 30px;
-  right: 15%;
-  top: 132%;
+  font-size: 42px;
+  bottom: 0;
 }
 
 .kpi-experiencia{
