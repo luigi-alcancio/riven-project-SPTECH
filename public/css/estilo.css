@@ -1,13 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-body {
+*{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+html{
   font-family: 'DM Sans', sans-serif;
   background-color: #474748 ;
+
+} 
+
+body {
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  overflow-x: clip
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -15,6 +24,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .container{
+  width: 100%;
   max-width: 1440px;
   margin: 0 auto;
   box-sizing: border-box;
@@ -29,13 +39,18 @@ h1, h2, h3, h4, h5, h6 {
   background-position: center;
   background-repeat: no-repeat;
   filter: saturate(0.5);
+
+  position: relative;
 }
 
 .section-experiencia{
   width: 100%;
   min-height: 900px;
 
-  background-color: #474748;
+  background-image: url(../assets/imgs/section-2-background.png);
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat  ;
 }
 
 .header-home {
@@ -118,12 +133,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section-experiencia h1{
+  margin-top: 80px;
   color: #ffffff;
   font-weight: 100;
   font-family: 'Cormorant Garamond', serif;
   font-size: 50px;
   justify-self: flex-end;
-  margin: 0;
   margin-right: 12%;
 }
 
