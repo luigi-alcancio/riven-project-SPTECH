@@ -152,3 +152,40 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 60px;
 }
 
+.promocao-chall-e-frase{
+  display: flex;
+  flex-direction: row;
+  margin-top: 100px;
+
+  height: 300px;
+  width: 100%;
+}
+
+.promocao-chall{
+  background-image: url(../assets/imgs/img-to-sessao-experiencia.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  justify-self: flex-start;
+
+  height: 300px;
+  width: 75%;
+}
+
+.frase-filosofica{
+  color: #FFFFFF;
+  font-size: 34px;
+  width: 40%;
+  display: flex;
+  align-items: start;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.autor{
+  position: absolute;
+  color: #FFFFFF;
+  font-size: 30px;
+  right: 15%;
+  top: 132%;
+}
+
