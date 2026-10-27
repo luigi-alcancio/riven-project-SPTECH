@@ -166,6 +166,7 @@ h1, h2, h3, h4, h5, h6 {
   background-position: center;
   background-repeat: no-repeat;
   justify-self: flex-start;
+  filter: drop-shadow(-14px 14px 5px rgba(0, 0, 0, 0.5));
 
   height: 300px;
   width: 75%;
