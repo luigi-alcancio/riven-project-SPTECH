@@ -53,6 +53,13 @@ h1, h2, h3, h4, h5, h6 {
   background-repeat: no-repeat  ;
 }
 
+.section-recursos{
+  width: 100%;
+  min-height: 900px;
+
+  background-color: #000000;
+}
+
 .header-home {
     position: relative;
     display: flex;
@@ -140,6 +147,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 50px;
   justify-self: flex-end;
   margin-right: 12%;
+  position: relative;
 }
 
 .section-experiencia h1::after{
@@ -234,3 +242,28 @@ h1, h2, h3, h4, h5, h6 {
 .descricao-kpi{
   font-size: 26px;
 }
+
+.section-recursos h1{
+  width: 100%;
+  margin-top: 80px;
+  color: #ffffff;
+  font-weight: 100;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 50px;
+  justify-self: flex-start;
+  margin-left: 12%;
+  position: relative;
+}
+
+.section-recursos h1::before{
+  content: '';
+  width: 220px;
+  height: 2px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 100%;
+  margin-right: 60px;
+}
+
