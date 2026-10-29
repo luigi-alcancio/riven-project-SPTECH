@@ -582,7 +582,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 footer{
-  min-height: 300px;
+  min-height: 100px;
   background-color: #0a0a0a;;
 }
 
@@ -644,4 +644,5 @@ footer .titulo-descricao-contato{
   justify-content: center;
   font-family: 'DM Sans', sans-serif;
   font-size: 15px;
+  margin-bottom: 30px; 
 }
