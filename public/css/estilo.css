@@ -451,7 +451,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .builds img{
-  width: 100%;
+  width: 123%;
   height: 111%;
   filter: saturate(35%);
 }
@@ -534,7 +534,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 50px;
   position: relative;
   color: #F9FFEE;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .frases-sobre span{
@@ -578,5 +578,70 @@ h1, h2, h3, h4, h5, h6 {
   height: 500px;
   position: absolute;
   left: -250px;
-  bottom: -26px;
+  bottom: -76px;
+}
+
+footer{
+  min-height: 300px;
+  background-color: #0a0a0a;;
+}
+
+footer .titulo-descricao-contato{
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-top: 20px;
+  color: #BCB8B8;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.descricao-footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 20px;
+  font-weight: 100;
+}
+
+.underline{
+  text-decoration: underline;
+}
+
+.icon-email{
+  height: 20px;
+  margin-right: 10px;
+}
+
+.icon-github{
+  height: 20px;
+  margin-right: 10px;
+}
+
+.icon-linkedin{
+  height: 20px;
+  margin-right: 10px;
+}
+
+.linha-divisoria{
+  background-color: #BCB8B8;
+  width: 100%;
+  height: 1px;
+  margin-top: 30px;
+}
+
+.direitos-reservados{
+  margin-top: 30px;
+  color: #BCB8B8;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
 }
