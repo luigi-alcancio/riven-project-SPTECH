@@ -1,3 +1,7 @@
+*{
+    font-family: 'Cormorant Garamond', serif;
+}
+
 h1{
     color: #F9FFEE;
 }
@@ -51,8 +55,10 @@ p{
 }
 
 .campo label{
-    color: #C4C4C4;
-    font-size: 14px;
+    color: #D6D6D6;
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: bold;
 }
 
 .form-opcoes {
@@ -61,6 +67,44 @@ p{
   justify-content: space-between;
   margin-bottom: 16px;
 }
+
+.form-opcoes label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.checkbox{
+    appearance: none;
+    
+    width: 16px;
+    height: 14px;
+    background-color: #111111;
+    border: 1px solid #FFFFFF;
+    border-radius: 5px;
+    cursor: pointer;
+      
+    display: grid;
+    place-content: center;
+}
+
+.checkbox::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background-color: #FFFFFF;
+  transform: scale(0);
+  transition: transform 0.15s ease;
+}
+
+.checkbox:checked::before {
+  transform: scale(1);
+}
+
+
 
 .form-opcoes label,
 .form-opcoes a {
@@ -77,9 +121,26 @@ p{
     align-items: center;
 }
 
+.form-cabecalho p{
+    font-size: 23px;
+    margin-top: 12px;
+}
+
+.form-cabecalho h1{
+    margin-top: 25px;
+    font-weight: 100;
+}
+
+form{
+    margin-top: 30px;
+}
+
+
 .form-avatar{
-    width: 180px;
-    height: 170px;
+    width: 150px;
+    height: 140px;
+    border: solid 4px #3C3C3C;
+    border-radius: 80px;
 }
 
 .form-rodape{
@@ -110,5 +171,8 @@ p{
     width: 100%;
     height: 40px;
     margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: bold;
 }
+
 
