@@ -1,63 +1,31 @@
-* {
-    overflow: hidden;
-}
-
-.container-login {
-    width: 100%;
-    margin: 0 auto;
-    box-sizing: border-box;
-
-    display: flex;
-    flex-direction: row;
-    background-image:
-    
-    linear-gradient(
-            to right,
-            #111111 0%,
-            rgba(17, 17, 17, 1) 35%,
-            rgba(17, 17, 17, 0.65) 40%,
-            rgba(17, 17, 17, 0.35) 50%,
-            transparent 80%
-        ),
-        
-        url(../assets/imgs/wallpaper-login.jpg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+.login {
+  display: flex;
+  height: 100vh;
 }
 
 .lado-esquerdo {
-    width: 35%;
-    min-height: 1000px;
-    background-color: #111111;
-    display: flex;
-    justify-content: center;
+  width: 40%;
+  background-color: #111111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .lado-direito {
-    width: 65%;
-    min-height: 1000px;
+  flex: 1;
+  background-image: url("../assets/imgs/wallpaper-login.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
-.inputs {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-
+.lado-direito::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(to right, #111111 0%, transparent 50%);
 }
 
-.inputs input {
-    height: 20px;
-    border: solid 1px;
-    border-color: #D6D6D6;
-    background-color: #434343;
-    border-radius: 13px;
-
-}
-
-.inputs label {
-    color: #D6D6D6;
-    font-weight: bold;
-    font-size: 10px;
-    font-family: 'Cormorant Garamond', serif;
-}
