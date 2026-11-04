@@ -50,9 +50,9 @@ p{
 
 .lado-esquerdo {
   width: 60%;
-  background-image: url("../assets/imgs/wallpaper-login.jpg");
-  background-size: 200%;
-  background-position: 75% 10%;
+  background-image: url("../assets/imgs/wallpaper-cadastro.png");
+  background-size: 160%;
+  background-position: 65% 10%;
   background-repeat: no-repeat;
   position: relative;
   filter: saturate(0.6);
