@@ -21,6 +21,31 @@ p{
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+.divisoria {
+  --altura: 200px; 
+  --espaco: 200px; 
+
+  position: absolute;
+  top: 50%;
+  right: 3%;
+  transform: translate(50%, -50%);
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.divisoria img {
+  display: block;
+  height: var(--altura);
+  width: auto;
+}
+
+.divisoria img + img {
+  margin-top: calc(var(--espaco) - var(--altura));
 }
 
 .lado-direito {
@@ -47,6 +72,7 @@ p{
   width: 380px;
   display: flex;
   flex-direction: column;
+  margin-bottom: 40px;
 }
 
 .campo {
