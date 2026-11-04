@@ -33,30 +33,40 @@
           <div class="avatar-caixa">
             <img src="assets/imgs/avatar_riven.png" class="form-avatar">
           </div>
-          <h1>LOGIN</h1>
-          <p>Sua jornada continua</p>
+          <h1>CADASTRO</h1>
+          <p>Sua jornada começa aqui</p>
         </header>
 
         <form>
           <div class="campo">
-            <label for="usuario">Nome de usuário</label>
+            <label for="ipt_email">Email</label>
+            <input type="text" id="ipt_email">
+          </div>
+
+          <div class="campo">
+            <label for="ipt_login">Nome de usuário</label>
             <input type="text" id="ipt_login">
           </div>
 
           <div class="campo">
-            <label for="senha">Senha</label>
+            <label for="ipt_senha">Senha</label>
             <input type="password" id="ipt_senha">
           </div>
 
+          <div class="campo">
+            <label for="ipt_confirmar_senha">Confirmar senha</label>
+            <input type="password" id="ipt_confirmar_senha">
+          </div>
           <div class="form-opcoes">
-            <label><input type="checkbox" class="checkbox"> Lembre-se</label>
-            <a href="#" class="remove-sublinhado">Esqueceu a senha?</a>
+            <label><input type="checkbox" class="checkbox"> Li e aceito os
+              <a href="#" class="remove-sublinhado destaque">termos de uso</a> e
+              <a href="#" class="remove-sublinhado destaque">políticas de privacidade</a></label>
           </div>
 
           <button class="botao">Entrar</button>
         </form>
 
-        <p class="form-rodape">Não tem login? <a href="#" class="remove-sublinhado">Cadastre-se aqui</a></p>
+        <p class="form-rodape">Já tem cadastro?<a href="#" class="remove-sublinhado"> Faça login</a></p>
 
       </div>
 
