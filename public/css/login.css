@@ -1,3 +1,11 @@
+p, label{
+    color: #D6D6D6;
+}
+
+h1{
+    color: #F9FFEE;
+}
+
 .login {
   display: flex;
   height: 100vh;
@@ -44,4 +52,15 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 16px;
+}
+
+.form-cabecalho{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-avatar{
+    width: 180px;
+    height: 170px;
 }
