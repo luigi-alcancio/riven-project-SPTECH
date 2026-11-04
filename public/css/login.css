@@ -26,8 +26,8 @@ p{
 .lado-direito {
   width: 60%;
   background-image: url("../assets/imgs/wallpaper-login.jpg");
-  background-size: cover;
-  background-position: center;
+  background-size: 200%;
+  background-position: 75% 10%;
   position: relative;
   filter: saturate(0.6);
 }
@@ -39,7 +39,7 @@ p{
   right: 0;
   bottom: 0;
   left: 0;
-  background: linear-gradient(to right, #111111 0%, transparent 50%);
+  background: linear-gradient(to right, #111111 0%, transparent 70%);
 }
 
 .form-caixa {
