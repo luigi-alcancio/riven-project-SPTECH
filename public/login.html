@@ -53,7 +53,8 @@
 
                 <p class="form-rodape">Não tem login? <a href="cadastro.html" class="remove-sublinhado">Cadastre-se aqui</a></p>
                 <a href="index.html" class="link-voltar">← Voltar à pagina inicial</a>
-                
+
+                <div id="mensagem_erro"></div>
                 
 
             </div>
@@ -82,25 +83,19 @@
 
 
     function entrar() {
-        aguardar();
 
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            finalizarAguardar();
-            return false;
-        }
-        else {
-            setInterval(sumirMensagem, 5000)
+            alert('ERROR: Por favor insira um valor de entrada');
+            return;
         }
 
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
 
-        fetch("/usuarios/autenticar", {
+        let resultado_autenticar = fetch("/usuarios/autenticar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -121,7 +116,6 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                     setTimeout(function () {
                         window.location = "./dashboard/cards.html";
@@ -135,19 +129,16 @@
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    finalizarAguardar(texto);
+                    if(toString.resultado_autenticar == undefined){
+                        alert('Usuário não está cadastrado')
+                    };
                 });
             }
 
         }).catch(function (erro) {
             console.log(erro);
         })
-
-        return false;
-    }
-
-    function sumirMensagem() {
-        cardErro.style.display = "none"
+        
     }
 
 </script>
