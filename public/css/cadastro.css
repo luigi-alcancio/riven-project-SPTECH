@@ -134,8 +134,7 @@ p{
 
 
 
-.form-opcoes label,
-.form-opcoes a {
+.form-opcoes label{
   color: #FFFFFF;
 }
 
@@ -174,8 +173,9 @@ form{
 
 .form-rodape{
     align-self: center;
-    color: #39E71A;
+    color: #7FBF9A;
     font-size: 18px;
+    margin-bottom: 10px;
 }
 
 .form-rodape a{
@@ -225,5 +225,10 @@ form{
 }
 
 .form-opcoes a{
-    color: #39E71A;
+    color: #7FBF9A;
+}
+
+.link-voltar{
+  text-align: center;
+  color: #FFFFFF;
 }

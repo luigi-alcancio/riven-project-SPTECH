@@ -173,8 +173,11 @@ form{
 
 .form-rodape{
     align-self: center;
-    color: #39E71A;
+    color: #7FBF9A;
     font-size: 18px;
+    display: flex;
+    gap: 3px;
+    margin-bottom: 10px;
 }
 
 .form-rodape a{
@@ -221,4 +224,9 @@ form{
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 1;
+}
+
+.link-voltar{
+  text-align: center;
+  color: #FFFFFF;
 }
