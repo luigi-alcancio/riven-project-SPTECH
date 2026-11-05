@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 
-<body onload="listar()">
+<body>
 
   <main class="login">
 
@@ -38,24 +38,23 @@
         </header>
 
         <form>
+
           <div class="campo">
-            <label for="ipt_email">Email</label>
-            <input type="text" id="ipt_email">
+            <label for="nome_input">Nome de usuário</label>
+            <input type="text" id="nome_input">
+          </div>
+          <div class="campo">
+            <label for="email_input">Email</label>
+            <input type="text" id="email_input">
+          </div>
+          <div class="campo">
+            <label for="senha_input">Senha</label>
+            <input type="password" id="senha_input">
           </div>
 
           <div class="campo">
-            <label for="ipt_login">Nome de usuário</label>
-            <input type="text" id="ipt_login">
-          </div>
-
-          <div class="campo">
-            <label for="ipt_senha">Senha</label>
-            <input type="password" id="ipt_senha">
-          </div>
-
-          <div class="campo">
-            <label for="ipt_confirmar_senha">Confirmar senha</label>
-            <input type="password" id="ipt_confirmar_senha">
+            <label for="confirmacao_senha_input">Confirmar senha</label>
+            <input type="password" id="confirmacao_senha_input">
           </div>
           <div class="form-opcoes">
             <label><input type="checkbox" class="checkbox"> Li e aceito os
@@ -63,17 +62,20 @@
               <a href="#" class="remove-sublinhado destaque">políticas de privacidade</a></label>
           </div>
 
-          <button class="botao">Entrar</button>
+          <button onclick="cadastrar()" class="botao" type="button">Cadastrar</button>
         </form>
 
-        <p class="form-rodape">Já tem cadastro?<a href="#" class="remove-sublinhado"> Faça login</a></p>
+        <p class="form-rodape">Já tem cadastro?<a href="login.html" class="remove-sublinhado"> Faça login</a></p>
 
-      </div>
+        <div id="mensagem_erro"></div>
+
+      </div>      
 
       <div class="divisoria">
         <img src="assets/imgs/divisoria.png">
         <img src="assets/imgs/divisoria.png">
       </div>
+
 
     </section>
 
@@ -84,10 +86,6 @@
 </html>
 
 <script>
-
-  // Array para armazenar empresas cadastradas para validação de código de ativação 
-  let listaEmpresasCadastradas = [];
-
   function cadastrar() {
     // aguardar();
 
@@ -97,38 +95,19 @@
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var codigoVar = codigo_input.value;
-    var idEmpresaVincular
 
     // Verificando se há algum campo em branco
     if (
       nomeVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
-      confirmacaoSenhaVar == "" ||
-      codigoVar == ""
+      confirmacaoSenhaVar == ""
     ) {
-      cardErro.style.display = "block";
       mensagem_erro.innerHTML =
         "(Mensagem de erro para todos os campos em branco)";
 
       finalizarAguardar();
       return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
-    }
-
-    // Verificando se o código de ativação é de alguma empresa cadastrada
-    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].id
-        console.log("Código de ativação válido.");
-        break;
-      } else {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-        finalizarAguardar();
-      }
     }
 
     // Enviando o valor da nova input
@@ -142,16 +121,13 @@
         // Agora vá para o arquivo routes/usuario.js
         nomeServer: nomeVar,
         emailServer: emailVar,
-        senhaServer: senhaVar,
-        idEmpresaVincularServer: idEmpresaVincular
+        senhaServer: senhaVar
       }),
     })
       .then(function (resposta) {
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "block";
-
           mensagem_erro.innerHTML =
             "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
@@ -171,29 +147,5 @@
       });
 
     return false;
-  }
-
-  // Listando empresas cadastradas 
-  function listar() {
-    fetch("/empresas/listar", {
-      method: "GET",
-    })
-      .then(function (resposta) {
-        resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            listaEmpresasCadastradas.push(empresa);
-
-            console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-          });
-        });
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-  }
-
-  function sumirMensagem() {
-    cardErro.style.display = "none";
   }
 </script>
