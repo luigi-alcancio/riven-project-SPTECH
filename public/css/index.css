@@ -614,3 +614,31 @@ footer .titulo-descricao-contato{
   font-size: 15px;
   margin-bottom: 30px; 
 }
+
+
+.efeito-scale{
+  transition: 0.2s;
+}
+
+.efeito-scale:hover{
+  transform: scale(1.01) translate(4px, -5px);
+
+}
+
+.efeito-scale-button{
+  transition: 0.2s;
+}
+
+.efeito-scale-button:hover{
+  transform: scale(1.01);
+
+}
+
+.efeito-login-cadastro{
+  transition: 0.2s;
+}
+
+ .efeito-login-cadastro:hover{
+  color: #108D35;
+} 
+
