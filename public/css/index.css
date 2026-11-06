@@ -639,6 +639,9 @@ footer .titulo-descricao-contato{
 }
 
  .efeito-login-cadastro:hover{
-  color: #108D35;
+  transform: scale(1.03);
 } 
 
+.efeito-login-cadastro:hover a{
+  color: #108d35;
+} 
