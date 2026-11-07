@@ -294,14 +294,14 @@
   transition: 0.4s;
 }
 
-.autonomia img:hover{
+.autonomia:hover img{
   transform: scale(1.02);
   filter: saturate(60%);
 }
 
 .card{
   border: solid 2px #3C3C3C;
-  border-radius:40px;
+  border-radius:20px;
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -324,7 +324,7 @@
 }
 
 .big-card{
-  border-radius:30px;
+  border-radius:20px;
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -375,7 +375,7 @@
   transition: 0.4s;
 }
 
-.combos img:hover{
+.combos:hover img{
   transform: scale(1.02);
   filter: saturate(70%);
 }
@@ -407,7 +407,7 @@
   filter: saturate(30%);
   transition: 0.4s;
 }
-.quiz img:hover{
+.quiz:hover img{
   transform: scale(1.02);
   filter: saturate(100%);
 }
@@ -440,9 +440,9 @@
   transition: 0.4s;
 }
 
-.matchup img:hover{
+.matchup:hover img{
   transform: scale(1.02);
-  filter: saturate(60%);
+  filter: saturate(65%);
 }
 
 .matchup span{
@@ -475,7 +475,7 @@
   transition: 0.4s;
 }
 
-.builds img:hover{
+.builds:hover img{
   transform: scale(1.02);
   filter: saturate(75%);
 }
@@ -496,7 +496,7 @@
   transition: 0.4s;
 }
 
-.runas img:hover{
+.runas:hover img{
   transform: scale(1.02);
   filter: saturate(50%);
 }
