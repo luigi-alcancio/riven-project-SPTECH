@@ -264,6 +264,7 @@
   flex-direction: column;
   gap: 30px;
   width: 33%;
+  position: relative;
 }
 
 .coluna-central{
@@ -275,6 +276,7 @@
   display: flex;
   flex-direction: column;
   gap: 50px;
+  position: relative;
 }
 
 .autonomia{
@@ -712,3 +714,50 @@ footer .titulo-descricao-contato{
 .efeito-login-cadastro:hover a{
   color: #108d35;
 } 
+
+.divisoria-direita {
+  --altura: 280px; 
+  --espaco: 280px; 
+
+  position: absolute;
+  top: 50%;
+  right: -15%;
+  transform: translate(50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.divisoria-direita img {
+  display: block;
+  height: var(--altura);
+  width: auto;
+}
+
+.divisoria-direita img + img {
+  margin-top: calc(var(--espaco) - var(--altura));
+}
+
+.divisoria-esquerda {
+  --altura: 280px; 
+  --espaco: 280px; 
+
+  position: absolute;
+  bottom: -30%;
+  left: -76%;
+  transform: translate(50%, -50%);
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.divisoria-esquerda img {
+  display: block;
+  height: var(--altura);
+  width: auto;
+}
+
+.divisoria-esquerda img + img {
+  margin-top: calc(var(--espaco) - var(--altura));
+}
