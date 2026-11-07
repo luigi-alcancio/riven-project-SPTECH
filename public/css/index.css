@@ -53,6 +53,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 35px;
     text-decoration: none;
+    font-weight: 500;
 }
 
 .icon-riven {
@@ -86,6 +87,7 @@
     font-size: 28px;
     margin: 0;
     position: relative;
+    font-weight: 600;
 }
 
 .section-inicial h1 , 
@@ -98,6 +100,7 @@
   font-weight: 100;
   margin-top: 200px;
   font-size: 58px;
+  font-weight: bold;
 }
 
 .section-inicial p{
@@ -124,7 +127,7 @@
 .section-experiencia h1{
   margin-top: 80px;
   color: #F9FFEE;
-  font-weight: 100;
+  font-weight: bold;
   font-family: 'Cormorant Garamond', serif;
   font-size: 50px;
   justify-self: flex-end;
@@ -231,12 +234,13 @@
   width: 100%;
   margin-top: 80px;
   color: #F9FFEE;
-  font-weight: 100;
+  font-weight: bold;
   font-family: 'Cormorant Garamond', serif;
   font-size: 50px;
   justify-self: flex-start;
   margin-left: 12%;
   position: relative;
+
 }
 
 .section-recursos h1::before{
@@ -564,6 +568,8 @@
   color: #f0f0f0;
   text-align: center;
   max-width: 1200px;
+  font-weight: bold;
+  
 }
 
 .frases-sobre h1{
