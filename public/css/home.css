@@ -12,7 +12,81 @@
         ),
         url('../assets/imgs/background-home.jpg');
     background-repeat: no-repeat;
-    background-size: 115%;
-    background-position: 15% 20%;
+    background-size: 100% 100%, 115%;
+    background-position: 0 0, 15% 20%;
     filter: saturate(0.5);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding-left: 60px;
+    padding-top: 60px;
+    padding-bottom: 80px;
+}
+
+.container{
+    display: flex; 
+    flex-direction: column; 
+    gap: 30px; 
+    width: 72%;
+    height: 100%;
+}
+
+.painel{
+    display: flex; 
+    flex-direction: row; 
+    gap: 30px;
+}
+
+.dica-do-dia{
+    background-color: #111111;
+    border: solid 2px #3C3C3C;
+    border-radius: 15px;
+    flex: 1;
+}
+
+.card-rank{
+    height: 500px;
+    width: 35%;
+    background-color: #111111;
+    border: solid 2px #3C3C3C;
+    border-radius: 15px;
+}
+
+.coluna{
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 35px;
+}
+
+.card-quiz{
+    border: solid 2px #3C3C3C;
+    background-color: #111111;
+    flex: 1;
+    border-radius: 15px;
+}
+
+.card-match-ups{
+    flex: 3;
+    border: solid 2px #3C3C3C;
+    background-color: #111111;
+    border-radius: 15px;
+}
+
+.boas-vindas{
+    margin-bottom: 30px;
+}
+
+.boas-vindas h1{
+    color: white;
+    font-size: 54px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.boas-vindas p{
+    color: #AFAFAF;
+    font-size: 34px;
+    font-family: 'DM Sans', sans-serif;
 }
