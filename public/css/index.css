@@ -7,18 +7,18 @@
 
 .section-inicial{
   width: 100%;
-  min-height: 900px;
+  min-height: 100vh;
 
   background-image: url(../assets/imgs/section-1-background.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: saturate(0.5);
+  filter: saturate(0.8);
 }
 
 .section-experiencia{
   width: 100%;
-  min-height: 900px;
+  min-height: 100vh;
 
   background-image: url(../assets/imgs/section-2-background.png);
   background-size: cover;
@@ -28,14 +28,14 @@
 
 .section-recursos{
   width: 100%;
-  min-height: 900px;
+  min-height: 100vh;
 
   background-color: #0a0a0a;
 }
 
 .section-sobre{
   width: 100%;
-  min-height: 900px;
+  min-height: 90vh;
 
   background-color: #474748;
 }
@@ -49,9 +49,9 @@
 }
 
 .navegacao-home a {
-    color: #ffffff;
+    color: #e0e0e0;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 30px;
+    font-size: 35px;
     text-decoration: none;
 }
 
@@ -82,7 +82,7 @@
 
 
 .destaque-titulo {
-    color: #FFFFFF;
+    color: #e0e0e0;
     font-family: 'Cormorant Garamond', serif;
     font-size: 28px;
     margin: 0;
@@ -90,32 +90,30 @@
 
 .section-inicial h1 , 
 .section-inicial p{
-  color: #ffffff;
+  color: #e0e0e0;
   margin-left: 100px;
 }
 
 .section-inicial h1{
   font-weight: 100;
   margin-top: 200px;
-  font-size: 50px;
+  font-size: 58px;
 }
 
 .section-inicial p{
   margin-top: 50px;
   font-family: 'DM Sans', sans-serif;
-  font-size: 24px;
-}
-
-.p-relative{
-  position: relative;
+  font-size: 26px;
+  color: #e0e0e0;
 }
 
 .img-flower-1 {
   position: absolute;
-  left: -150px;
-  bottom: -438px;
+  left: 100px;
+  bottom: 0;
   width: 300px;
   opacity: 0.8;
+  
 }
 
 .destaque-challenger{
@@ -165,7 +163,7 @@
 }
 
 .frase-filosofica{
-  color: #FFFFFF;
+  color: #e0e0e0;
   font-size: 34px;
   width: 40%;
   display: flex;
@@ -176,9 +174,11 @@
 
 .autor{
   position:absolute;
-  color: #FFFFFF;
-  font-size: 42px;
+  color: #e0e0e0;
+  font-size: 34px;
   bottom: 0;
+  margin-bottom: 15px;
+  margin-right: 15px;
 }
 
 .kpi-experiencia{
@@ -561,7 +561,7 @@
 
 .frases-sobre span,
 .frases-sobre h1{
-  color: white;
+  color: #f0f0f0;
   text-align: center;
   max-width: 1200px;
 }
@@ -612,10 +612,10 @@
 
 .riven-section-sobre{
   width: 300px;
-  height: 500px;
+  height: 450px;
   position: absolute;
   left: -250px;
-  bottom: -76px;
+  bottom: -88px;
 }
 
 footer{
