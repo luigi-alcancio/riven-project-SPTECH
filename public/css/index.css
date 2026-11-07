@@ -43,13 +43,13 @@
 .header-home {
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: flex-start;
-    padding: 20px 40px;
+    padding: 20px 100px;
 }
 
 .navegacao-home a {
-    color: #e0e0e0;
+    color: #f3f2f2;
     font-family: 'Cormorant Garamond', serif;
     font-size: 35px;
     text-decoration: none;
@@ -57,16 +57,15 @@
 
 .icon-riven {
     position: absolute;
-    top: 55px;
-    left: 50%;
+    top: 30px;
+    left: 48%;
     transform: translateX(-50%);
-    width: 160px;
-    height: auto;
-    filter: saturate(3.5);
+    width: 120px;
+    height: 38px;
+    filter: saturate(2);
 }
 
 .navegacao-home {
-    position: absolute;
     top: 20px;
     right: 40px;
 }
@@ -82,10 +81,11 @@
 
 
 .destaque-titulo {
-    color: #e0e0e0;
+    color: #edeeed;
     font-family: 'Cormorant Garamond', serif;
     font-size: 28px;
     margin: 0;
+    position: relative;
 }
 
 .section-inicial h1 , 
@@ -455,7 +455,7 @@
   color: white;
   position: absolute;
   left: 50%;
-  bottom: 25px;
+  bottom: 24px;
   transform: translateX(-50%);
   z-index: 1;
   opacity: 0.9;
