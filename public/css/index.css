@@ -686,7 +686,7 @@ footer .titulo-descricao-contato{
 
 
 .efeito-scale{
-  transition: 0.2s;
+  transition: 0.4s;
 }
 
 .efeito-scale:hover{
@@ -695,16 +695,16 @@ footer .titulo-descricao-contato{
 }
 
 .efeito-scale-button{
-  transition: 0.2s;
+  transition: 0.4s;
 }
 
 .efeito-scale-button:hover{
-  transform: scale(1.01);
+  transform: scale(1.02);
 
 }
 
 .efeito-login-cadastro{
-  transition: 0.2s;
+  transition: 0.4s;
 }
 
  .efeito-login-cadastro:hover{
