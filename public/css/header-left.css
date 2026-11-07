@@ -32,7 +32,7 @@
     flex-direction: column;
     align-items: stretch;
     justify-content: center;
-    gap: 16px;
+
 }
 
 .menu a,
@@ -49,10 +49,7 @@
     flex-direction: column;
     align-items: center;
     padding: 13px 0;
-}
-
-.menu a img{
-    width: 50px;
+    gap: 8px;
 }
 
 main{
@@ -74,4 +71,30 @@ main{
     top: 50%;
     transform: translate(-50%, -50%);
     background-color: #3a1620;
+}
+
+.efeito-hover-side:hover{
+    background-color: #3a16205b;
+}
+
+.efeito-hover-side:hover img,
+.efeito-hover-side:hover span{
+    transform: scale(1.06);
+    transition: 0.3s;
+}
+
+.icon-match{
+    width: 40px;
+}
+
+.icon-build{
+    width: 45px;
+}
+
+.icon-quiz{
+    width: 45px;
+}
+
+.icon-bar{
+    width: 50px;
 }
