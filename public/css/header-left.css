@@ -7,13 +7,14 @@
 .side-home {
     display: flex;
     flex-direction: row;
-    width: 89%;
+    width: 100%;
     height: 92%;
 }
 
 .header-left {
     margin-left: 80px;
-    width: 11%;
+    min-width: 120px;
+    width: 9vw;
     height: 100%;
     background-color: #1E1E1E;
 
@@ -53,7 +54,7 @@
 }
 
 main {
-    width: 91%;
+    flex: 1;
     height: 100%;
 }
 
