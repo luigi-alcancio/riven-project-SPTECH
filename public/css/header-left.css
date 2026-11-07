@@ -27,9 +27,10 @@
 
 .header-left .menu {
     flex: 1;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     gap: 16px;
 }
@@ -47,6 +48,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 13px 0;
 }
 
 .menu a img{
@@ -56,4 +58,20 @@
 main{
     width: 91%;
     height: 100%;
+}
+
+.menu a.ativo {
+    background-color: #3a16205b;
+    position: relative;
+}
+
+.menu a.ativo::after {
+    position: absolute;
+    content: '';
+    width: 5%;
+    height: 100%;
+    left: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #3a1620;
 }
