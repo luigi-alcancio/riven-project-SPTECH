@@ -35,6 +35,7 @@
     border: solid 2px #3C3C3C;
     border-radius: 15px;
     padding: 22px 40px;
+    gap: 20px;
 
     display: flex;
     flex-direction: column;
@@ -158,7 +159,70 @@
 
 .explicacao-runa{
     flex:1;
-    border: solid 2px blue;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-top: 20px;
+    padding-left: 20px;
+    gap: 16px;
+
+    border-left: solid 2px #afafaf7d;
+}
+
+.explicacao-runa h2{
+    color: #FFFFFF;
+    font-size: 22px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.explicacao-runa p{
+    color: #AFAFAF;
+    font-size: 20px;
+    font-family: 'DM Sans', sans-serif;
+}
+.imagens-speels{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+
+    flex: 1;
+}
+
+.imagens-speels img{
+    border-radius: 10px;
+    width: 70px;
+    filter: saturate(0.6);
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.imagens-speels img:hover{
+    transform: scale(1.03);
+    filter: saturate(1);
+}
+
+.section-explicacao{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 30px;
+
+    border-bottom: solid 3px #afafaf7d;
+
+
+    flex: 1;
+}
+
+.section-speels{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .runas-linha{
