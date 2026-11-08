@@ -127,9 +127,9 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transform: 0.4s;
     cursor: pointer;
     text-decoration: none;
+    transition: 0.3s;
 }
 
 .logo:hover {

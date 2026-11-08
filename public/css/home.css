@@ -190,11 +190,11 @@
 .card-rank img{
     width: 60%;
     filter: saturate(0.6);
-    transition: 0.2s;
+    transition: 0.4s;
 }
 
 .card-rank img:hover{
-    transform: scale(1.01);
+    transform: scale(1.02);
     filter: saturate(0.8);
 }
 
