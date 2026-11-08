@@ -145,6 +145,34 @@
     justify-content: space-between;
     align-items: center;
     padding: 40px 0px;
+    position: relative;
+}
+
+.btn-editar-rank {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+
+    width: 46px;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(58, 22, 32, 0.26);
+    border: solid 2px #3C3C3C;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-editar-rank img {
+    width: 22px;
+}
+
+.btn-editar-rank:hover {
+    background-color: #501425;
+    transform: scale(1.05);
 }
 
 .card-rank p{
