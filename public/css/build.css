@@ -50,12 +50,12 @@
 .titulo-painel-runas {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .titulo-painel-runas h2 {
-    color: #FFFFFF;
-    font-size: 26px;
+    color: #AFAFAF;
+    font-size: 30px;
     font-family: 'DM Sans', sans-serif;
 }
 
@@ -65,38 +65,6 @@
     border-radius: 15px;
 }
 
-.seletor{
-    border: solid 2px #3C3C3C;
-    border-radius: 20px;
-    background-color: #111111;
-    width: 180px;
-    height: 50px;
-    color: #AFAFAF;
-    font-size: 18px;
-    margin-left: 20px;
-    align-self: center;
-    transition: 0.4s;
-    cursor: pointer;
-}
-
-.seletor:hover{
-    background-color: #3a1620;
-    transform: scale(1.04);
-}
-
-.btn-ativo{
-    border: solid 2px #3C3C3C;
-    border-radius: 20px;
-    background-color: #3a1620;
-    width: 180px;
-    height: 50px;
-    color: #AFAFAF;
-    font-size: 18px;
-    margin-left: 20px;
-    align-self: center;
-    transition: 0.4s;
-    cursor: pointer;
-}
 
 .container-runas{
     flex: 1;
