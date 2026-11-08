@@ -45,6 +45,52 @@
     flex: 1;
     border: solid 2px #3C3C3C;
     border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+    padding: 22px 40px;
+
+    justify-content: space-around;
+}
+
+.painel-build h2{
+    color: #ffffff;
+    font-size: 30px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.painel-build p{
+    color: #AFAFAF;
+    font-size: 26px;
+    font-family: 'DM Sans', sans-serif;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.painel-build img{
+    width: 55px;
+    border-radius: 10px;
+    margin-left: 10px;
+    transition: 0.3s;
+    filter: saturate(0.7);
+}
+
+.painel-build img:hover{
+    transform: scale(1.02);
+    filter: saturate(1);
+}
+
+.ordem-habilidades div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
+.ordem-habilidades span{
+    color: #AFAFAF;
+    font-size: 40px;
+    font-family: 'DM Sans', sans-serif;
 }
 
 .titulo-painel-runas {
@@ -54,7 +100,7 @@
 }
 
 .titulo-painel-runas h2 {
-    color: #AFAFAF;
+    color: #ffffff;
     font-size: 30px;
     font-family: 'DM Sans', sans-serif;
 }
@@ -263,3 +309,4 @@
 .runa-ativa img{
     filter: saturate(1);
 }
+
