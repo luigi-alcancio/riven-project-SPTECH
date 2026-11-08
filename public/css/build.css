@@ -22,26 +22,167 @@
     font-family: 'DM Sans', sans-serif;
 }
 
-.painel-runas{
+.paineis {
+    flex: 1;
+    gap: 16px;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.painel-runas {
+    flex: 2;
+    border: solid 2px #3C3C3C;
+    border-radius: 15px;
+    padding: 22px 40px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.painel-build {
     flex: 1;
     border: solid 2px #3C3C3C;
     border-radius: 15px;
 }
 
-.titulo-painel-runas{
+.titulo-painel-runas {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.titulo-painel-runas h2{
+.titulo-painel-runas h2 {
     color: #FFFFFF;
-    font-size: 22px;
+    font-size: 26px;
     font-family: 'DM Sans', sans-serif;
 }
 
-.dica{
+.dica {
     height: 100px;
     border: solid 2px #3C3C3C;
     border-radius: 15px;
+}
+
+.seletor{
+    border: solid 2px #3C3C3C;
+    border-radius: 20px;
+    background-color: #111111;
+    width: 180px;
+    height: 50px;
+    color: #AFAFAF;
+    font-size: 18px;
+    margin-left: 20px;
+    align-self: center;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.seletor:hover{
+    background-color: #3a1620;
+    transform: scale(1.04);
+}
+
+.btn-ativo{
+    border: solid 2px #3C3C3C;
+    border-radius: 20px;
+    background-color: #3a1620;
+    width: 180px;
+    height: 50px;
+    color: #AFAFAF;
+    font-size: 18px;
+    margin-left: 20px;
+    align-self: center;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.container-runas{
+    flex: 1;
+
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.arvore-primaria{
+    flex: 1;
+    position: relative;
+    z-index: 0;
+    padding: 30px 15px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 35px;
+}
+
+.arvore-primaria::before{
+    content: '';
+    position: absolute;
+    inset: 0;   /* Ocupa a caixa inteira, tipo o flex:1 ou heigth 100% */
+    z-index: -1;
+
+    background-image: url(../assets/imgs/conquer-background.webp);
+    background-size: 300%;
+    background-repeat: no-repeat;
+    background-position: 90% 50%;
+    filter: opacity(0.4) saturate(0.7);
+    border-radius: 30px;
+}
+
+.arvore-secundaria{
+    flex: 1;
+    border: solid 2px green;
+}
+
+.explicacao-runa{
+    flex:1;
+    border: solid 2px blue;
+}
+
+.runas-linha{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.runa-maior{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.runa-maior img{
+    width: 70px;
+    filter: saturate(0);
+    transition: 0.3s;
+}
+
+.runa-maior img:hover{
+    transform: scale(1.1);
+    filter: saturate(1);
+}
+
+.runa{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.runa img{
+    width: 45px;
+    filter: saturate(0);
+    transition: 0.3s;
+}
+
+.runa img:hover{
+    transform: scale(1.1);
+    filter: saturate(1);
+}
+
+.runa-ativa img{
+    filter: saturate(1);
 }
