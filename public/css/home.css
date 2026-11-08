@@ -8,7 +8,7 @@
 
     padding-left: 60px;
     padding-top: 60px;
-    padding-bottom: 80px;
+    padding-bottom: 60px;
 }
 
 .home::before {
@@ -76,9 +76,8 @@
 }
 
 .card-rank p{
-    color: #f1f1f1;
-    font-size: 40px;
-    font-family: 'Cormorant Garamond', serif;
+    color: #d8d8d8;
+    font-size: 32px;
     font-weight: bold;
 }
 
@@ -116,6 +115,8 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 20px 40px;
+
+    position: relative;
 }
 
 .caixa-trofeu{
@@ -131,7 +132,12 @@
 
 .caixa-trofeu img{
     width: 60px;
+    transition: 0.2s;
+}
 
+.caixa-trofeu img:hover{
+    filter: saturate(3);
+    transform: scale(1.01);
 }
 
 .card-match-ups{
@@ -139,6 +145,169 @@
     border: solid 2px #3C3C3C;
     background-color: #111111;
     border-radius: 15px;
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.titulos-caixa-match{
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+}
+
+.titulos-caixa-match p{
+    color: #d8d8d8;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.titulos-caixa-match span{
+    color: #D9C7A0;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.titulos-caixa-match span:hover{
+    transform: translateX(3px);
+    
+}
+
+.caixa-card-match{
+    flex:1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 30px;
+}
+
+.card-unknown{
+    background-color: #2E2E2E;
+
+    border-radius: 10px;
+    border: solid 2px #3C3C3C;
+    flex: 1;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #C1C1C1;
+    font-size: 80px;
+    font-weight: 100;
+
+    transition: 0.3s;
+}
+
+.card-unknown:hover{
+    border: solid 2px #3a1620;
+    transform: scale(1.03);
+    cursor: pointer;
+
+}
+
+.card-aatrox{
+    border-radius: 10px;
+    border: solid 2px #3C3C3C;
+    flex: 1;
+
+    background-image: url(../assets/imgs/card-aatrox.webp);
+    background-size: 110%;
+    background-position: 30% 15%;
+    filter: saturate(0.6);
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    transition: 0.3s;
+}
+
+.card-aatrox:hover{
+    border: solid 2px #3a1620;
+    transform: scale(1.03);
+    filter: saturate(0.8);
+    cursor: pointer;
+}
+
+
+.card-aatrox span{
+    color: #AFAFAF;
+    font-weight: bold;
+    font-size: 28px;
+    min-height: 50px;
+    flex: 1;
+    background-color: #212121;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.card-aatrox span::after{
+    content: '';
+    background: url(../assets/icon/like-card.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left: 8px;
+    right: 0;
+    width: 22px;
+    height: 26px;
+}
+
+.card-fiora{
+    border-radius: 10px;
+    border: solid 2px #3C3C3C;
+    flex: 1;
+
+    background-image: url(../assets/imgs/card-fiora.jpg);
+    background-size: 110%;
+    background-position: 30% 15%;
+    filter: saturate(0.6);
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    transition: 0.3s;
+}
+
+.card-fiora:hover{
+    transform: scale(1.03);
+    filter: saturate(0.8);
+    cursor: pointer;
+    border: solid 2px #3a1620;
+}
+
+
+.card-fiora span{
+    color: #AFAFAF;
+    font-weight: bold;
+    font-size: 28px;
+    min-height: 50px;
+    flex: 1;
+    background-color: #212121;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.card-fiora span::after{
+    content: '';
+    background: url(../assets/icon/like-card.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left: 8px;
+    right: 0;
+    width: 22px;
+    height: 26px;
 }
 
 .boas-vindas{
@@ -164,7 +333,7 @@
 }
 
 .info-card-quiz p{
-    color: #AFAFAF;
+    color: #d8d8d8;
     font-weight: bold;
     font-size: 22px;
 }
@@ -187,10 +356,20 @@
     align-self: center;
     transition: 0.4s;
     cursor: pointer;
+    padding-bottom: 10px;
+    padding-left: 10px;
 }
 
-.card-quiz button:hover{
+.card-quiz button::after {
+    content: '↗';
+    font-size: 20px;
+    vertical-align: super;
+    margin-left: 4px;
+}
+
+.card-quiz button:hover {
     transform: scale(1.02);
+    background-color: #501425;
 }
 
 .barra {

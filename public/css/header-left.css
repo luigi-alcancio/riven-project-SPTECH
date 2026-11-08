@@ -105,7 +105,13 @@ main {
     height: 55px;
     filter: saturate(0.8);
     cursor: pointer;
+    transition: 0.2s;
 }
+
+.avatar-riven:hover {
+    transform: scale(1.02);
+}
+
 
 .header-top {
     display: flex;
@@ -148,4 +154,12 @@ main {
     color: #CFCFCF;
     font-family: 'DM Sans', serif;
     font-size: 20px;
+}
+
+.sair{
+    transition: 0.2s;
+}
+
+.sair:hover{
+    transform: scale(1.06);
 }
