@@ -18,7 +18,7 @@
 
     background: url('../assets/imgs/background-build.jpg') no-repeat;
     background-size: 115%;
-    background-position: -90% 20%;
+    background-position: -110% 20%;
     filter: saturate(0.5) blur(1.2px) opacity(0.8);
 }
 
