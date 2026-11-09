@@ -20,7 +20,7 @@
     background: url('../assets/imgs/background-home.jpg') no-repeat;
     background-size: 115%;
     background-position: 15% 20%;
-    filter: saturate(0.5);
+    filter: saturate(0.5) blur(0.6px) opacity(0.8) ;
 }
 
 .home::after {

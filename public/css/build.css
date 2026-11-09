@@ -10,6 +10,36 @@
     gap: 16px;
 }
 
+.build::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background: url('../assets/imgs/background-build.jpg') no-repeat;
+    background-size: 115%;
+    background-position: -90% 20%;
+    filter: saturate(0.5) blur(1.2px) opacity(0.8);
+}
+
+.build::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background: linear-gradient(
+        90deg,
+        #111111 0%,
+        #111111 38%,
+        rgba(17, 17, 17, 0.92) 44%,
+        rgba(17, 17, 17, 0.70) 50%,
+        rgba(17, 17, 17, 0.40) 56%,
+        rgba(17, 17, 17, 0.15) 62%,
+        rgba(17, 17, 17, 0) 70%
+    );
+}
+
 .titulo h1 {
     color: #FFFFFF;
     font-size: 44px;
@@ -36,6 +66,7 @@
     border-radius: 15px;
     padding: 22px 40px;
     gap: 20px;
+    background-color: #111111;
 
     display: flex;
     flex-direction: column;
@@ -45,6 +76,7 @@
     flex: 1;
     border: solid 2px #3C3C3C;
     border-radius: 15px;
+    background-color: #111111;
 
     display: flex;
     flex-direction: column;
