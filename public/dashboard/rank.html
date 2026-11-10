@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../css/header-left.css">
     <link rel="icon" href="../assets/icon/favicon2.ico">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -147,63 +147,160 @@
 </body>
 
 </html>
+
 <script>
     const ctx = document.getElementById('myChart');
     const ctx2 = document.getElementById('myChart2');
 
+    const verde = '#88C0A0';
+    const dourado = '#E0CC96';
+    const textoCinza = '#AFAFAF';
+    const linhaGrade = '#2A2A2A';
+
+    const labelsElo = ['Ferro', 'Bronze', 'Prata', 'Ouro', 'Platina', 'Esmeralda', 'Diamante', 'Mestre+'];
+    const jogadoresPorElo = [8, 14, 21, 34, 31, 21, 12, 7];
+
+    let maior = jogadoresPorElo[0];
+
+    for (let i = 1; i < jogadoresPorElo.length; i++) {
+        if (jogadoresPorElo[i] > maior) {
+            maior = jogadoresPorElo[i];
+        }
+    }
+
+    const coresBarras = [];
+
+    for (let i = 0; i < jogadoresPorElo.length; i++) {
+        if (jogadoresPorElo[i] == maior) {
+            coresBarras.push(dourado);
+        } else {
+            coresBarras.push(verde);
+        }
+    }
+
+    // PLUGIN 1: escreve o número em cima de cada barra
+    const valoresNasBarras = {
+        id: 'valoresNasBarras',
+        afterDatasetsDraw: function (chart) {
+            const caneta = chart.ctx;
+            caneta.fillStyle = textoCinza;
+            caneta.font = '13px DM Sans';
+            caneta.textAlign = 'center';
+
+            const barras = chart.getDatasetMeta(0).data;
+
+            for (let i = 0; i < barras.length; i++) {
+                caneta.fillText(jogadoresPorElo[i], barras[i].x, barras[i].y - 6);
+            }
+        }
+    };
+
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+            labels: labelsElo,
             datasets: [{
-                label: 'Temperatura Média',
-                data: [22, 24, 27, 23, 20, 18],
-                borderColor: 'rgb(254, 99, 131)',
-                backgroundColor: 'rgb(254, 99, 131)',
-                borderWidth: 0
-            },
-            {
-                label: 'Umidade Média',
-                data: [90, 89, 93, 87, 88, 82],
-                borderColor: 'rgb(54, 162, 235)',
-                backgroundColor: 'rgb(54, 162, 235)',
-                borderWidth: 0
+                label: 'Jogadores',
+                data: jogadoresPorElo,
+                backgroundColor: coresBarras,
+                borderWidth: 0,
+                borderRadius: 6
             }]
         },
         options: {
+            plugins: {
+                legend: { display: false }
+            },
             scales: {
+                x: {
+                    grid: { display: false },
+                    ticks: { color: textoCinza }
+                },
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    max: 40,
+                    ticks: { stepSize: 10, color: textoCinza },
+                    grid: { color: linhaGrade }
                 }
             }
-        }
+        },
+        plugins: [valoresNasBarras]
     });
+
+const acertosPorElo = [3.5, 4.3, 5.3, 6.2, 7.0, 7.9, 8.6, 9.2];
+
+let soma = 0;
+
+for (let i = 0; i < acertosPorElo.length; i++) {
+    soma += acertosPorElo[i];
+}
+
+const mediaGeral = soma / acertosPorElo.length;
+
+const textoDaMedia = mediaGeral.toFixed(1).replace('.', ',');
+
+const linhaMedia = [];
+
+for (let i = 0; i < acertosPorElo.length; i++) {
+    linhaMedia.push(mediaGeral);
+}
+
+// PLUGIN 2: escreve "média geral X" em cima da linha tracejada
+const textoMedia = {
+    id: 'textoMedia',
+    afterDatasetsDraw: function (chart) {
+        const caneta = chart.ctx;
+        const y = chart.scales.y.getPixelForValue(mediaGeral);
+
+        caneta.fillStyle = dourado;
+        caneta.font = 'bold 13px DM Sans';
+        caneta.textAlign = 'left';
+        caneta.fillText('média geral ' + textoDaMedia, chart.chartArea.left + 10, y - 8);
+    }
+};
 
     new Chart(ctx2, {
         type: 'line',
         data: {
-            labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-            datasets: [{
-                label: 'Temperatura',
-                data: [30, 29, 28, 25, 22, 23],
-                borderColor: 'rgb(254, 99, 131)',
-                backgroundColor: 'rgb(254, 99, 131)',
-                borderWidth: 3
-            },
-            {
-                label: 'Umidade',
-                data: [80, 82, 80, 85, 80, 83],
-                borderColor: 'rgb(54, 162, 235)',
-                backgroundColor: 'rgb(54, 162, 235)',
-                borderWidth: 3
-            }]
+            labels: labelsElo,
+            datasets: [
+                {
+                    label: 'Acertos médios',
+                    data: acertosPorElo,
+                    borderColor: verde,
+                    backgroundColor: 'rgba(136, 192, 160, 0.15)',
+                    pointBackgroundColor: verde,
+                    pointRadius: 4,
+                    borderWidth: 2,
+                    fill: true
+                },
+                {
+                    label: 'Média geral',
+                    data: linhaMedia,
+                    borderColor: '#8A8A8A',
+                    borderDash: [4, 4],
+                    borderWidth: 1,
+                    pointRadius: 0
+                }
+            ]
         },
         options: {
+            plugins: {
+                legend: { display: false }
+            },
             scales: {
+                x: {
+                    grid: { display: false },
+                    ticks: { color: textoCinza }
+                },
                 y: {
-                    beginAtZero: true
+                    min: 0,
+                    max: 10,
+                    ticks: { stepSize: 5, color: textoCinza },
+                    grid: { color: linhaGrade }
                 }
             }
-        }
+        },
+        plugins: [textoMedia]
     });
 </script>
