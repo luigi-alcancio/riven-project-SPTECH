@@ -1,0 +1,190 @@
+.dashboard{
+    padding-left: 60px;
+    padding-top: 10px;
+    padding-bottom: 60px;
+    padding-right: 250px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.dashboard::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background: url('../assets/imgs/background-ranks.jpg') no-repeat;
+    background-size: 120%;
+    background-position: -120% 75%;
+    filter: saturate(0.6) blur(3px) opacity(0.8) ;
+}
+
+.dashboard::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background: linear-gradient(
+        90deg,
+        #111111 0%,
+        #111111 38%,
+        rgba(17, 17, 17, 0.92) 44%,
+        rgba(17, 17, 17, 0.70) 50%,
+        rgba(17, 17, 17, 0.40) 56%,
+        rgba(17, 17, 17, 0.15) 62%,
+        rgba(17, 17, 17, 0) 70%
+    );
+}
+
+
+.titulo-dash h2{
+    color: white;
+    font-size: 34px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.titulo-dash p{
+    color: #AFAFAF;
+    font-size: 24px;
+}
+
+.kpi{
+    background-color: #111111;
+    border: solid 2px #3C3C3C;
+    border-radius: 15px;
+    flex: 1;
+
+    padding: 18px 18px;
+}
+
+.linha-kpi{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+}
+
+.linha-kpi h2{
+    color: white;
+    font-size: 36px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.linha-kpi p{
+    color: #AFAFAF;
+    font-size: 20px;
+}
+
+.linha-gráficos{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.linha-gráficos h2{
+    color: white;
+    font-size: 24px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.linha-gráficos p{
+    color: #AFAFAF;
+    font-size: 18px;
+}
+
+.grafico{
+    background-color: #111111;
+    border: solid 2px #3C3C3C;
+    border-radius: 15px;
+    flex: 1;
+
+    padding: 18px 18px;
+}
+
+.myChart{
+    flex: 1;
+}
+
+.linha-tabela{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.tabela{
+    flex: 1;
+    background-color: #111111;
+    border: solid 2px #3C3C3C;
+    border-radius: 15px;
+
+    padding: 14px 18px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.lista{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+
+.linha-tabela h2{
+    color: white;
+    font-size: 24px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.linha-tabela span{
+    color: #AFAFAF;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.linha{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    border-top: solid 2px #3C3C3C;
+    padding: 12px 0;
+}
+
+
+.linha span:last-child{
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.linha-tabela .rank-1{ 
+    color: #FFD700; 
+} 
+.linha-tabela .rank-2{ 
+    color: #C0C0C0; 
+} 
+.linha-tabela .rank-3{ 
+    color: #CD7F32; 
+}
+
+.linha img{
+    width: 26px;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+
+.linha img:hover{
+    transform: scale(1.03);
+}
