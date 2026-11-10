@@ -161,7 +161,7 @@
     padding: 12px 0;
 }
 
-
+ /* sobre o last-child dentro de um .linha, pegue o span que for o último filho do pai dele, apenas isso, apenas pra evitar criar mais uma classe nele */ 
 .linha span:last-child{
     margin-left: auto;
     display: flex;
