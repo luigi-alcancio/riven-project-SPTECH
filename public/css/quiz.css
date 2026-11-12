@@ -17,7 +17,7 @@
 
 .quiz{
     padding-left: 60px;
-    padding-top: 20px;
+    padding-top: 30px;
     padding-bottom: 60px;
     padding-right: 350px;
 
@@ -58,13 +58,13 @@
 
 .titulo-quiz h1{
     color: white;
-    font-size: 34px;
+    font-size: 42px;
     font-family: 'DM Sans', sans-serif;
 }
 
 .titulo-quiz p{
     color: #AFAFAF;
-    font-size: 24px;
+    font-size: 26px;
 }
 
 .pontuacaoEJogo span{
@@ -74,8 +74,21 @@
 }
 
 button {
-    font-family: monospace;
-    font-weight: bold;
+     border: solid 2px #3C3C3C;
+    border-radius: 20px;
+    background-color: #3a1620;
+    height: 60px;
+    width: 300px;
+    color: #AFAFAF;
+    font-size: 18px;
+    align-self: center;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.02);
+    background-color: #501425;
 }
 
 .flex-colunar {
@@ -85,29 +98,27 @@ button {
 
 .width-fit-content {
     flex: 1;
+
 }
 
 .border-primary {
     justify-self: flex-end ;
     background-color: #111111;
-    border: solid 3px #3C3C3C;
+    border: solid 2px #3C3C3C;
     border-radius: 15px;
     padding: 20px;
 }
 
 .border-secondary {
     background-color: #111111;
-    border: solid 3px #3C3C3C;
+    border: solid 2px #3C3C3C;
     border-radius: 15px;
     padding: 20px;
 }
 
-.padding-8 {
-    padding: 8px;
-}
-
 .text-bold {
     font-weight: bold;
+
 }
 
 .text-success-with-bg {
@@ -127,4 +138,82 @@ button {
 
 .text-new-gray {
     color: var(--new-gray);
+}
+
+.tela-inicio{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tela-inicio h2{
+    color: white;
+    font-size: 32px;
+    font-family: 'DM Sans', sans-serif;
+    margin-bottom: 8px;
+}
+
+.tela-inicio p{
+    color: #AFAFAF;
+    font-size: 20px;
+    margin-bottom: 35px;
+}
+
+.card-inicio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: fit-content;
+    border: solid 2px #3C3C3C;
+    border-radius: 20px;
+    padding: 40px 20px;
+    background-color: #111111;
+}
+
+.icone-inicio img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    transition: 0.4s;
+}
+
+.icone-inicio img:hover{
+    transform: scale(1.03);
+}
+
+.chips{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+.chip{
+    border: 1px solid #3C3C3C;
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 14px ;
+    color: #CFCFCF;
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 20px;
+    transition: 0.4s;
+}
+
+.chip:hover{
+    transform: scale(1.03);
+}
+
+.chip img{
+    width: 14px;
+    color: white;
+    filter: invert(1); /* Invertendo o icone de preto pra branco */
+}
+
+.tela-inicio button{
+    justify-self: flex-end;
 }

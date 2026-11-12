@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
-<body onload="">
+<body onload="onloadEsconder()">
 
     <div class="header-top">
         <a href="home.html" class="logo">
@@ -53,19 +53,39 @@
 
         <main class="quiz">
             <div class="titulo-quiz">
+
                 <h1>Quiz</h1>
                 <p>Teste seu conhecimento de duelista</p>
             </div>
-            
+
+            <div class="tela-inicio" id="telaInicio">
+                <div class="card-inicio">
+                    <div class="icone-inicio"><img src="../assets/icon/icon-riven-chibi.png" alt=""></div>
+                    <h2>Pronto para a match-up?</h2>
+                    <p>Responda as questões e fortifique seus conhecimentos.</p>
+                    <div class="chips"> 
+                        <span class="chip">
+                            <img src="../assets/icon/list-numbers.svg">
+                            3 questões</span>
+                        <span class="chip">
+                            <img src="../assets/icon/checks.svg">
+                            4 alternativas</span>
+                        <span class="chip">
+                            <img src="../assets/icon/clock-off.svg">
+                            Sem tempo limite</span>
+                    </div>
+                    <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
+                </div>
+            </div>
+
             <div id="pontuacaoEJogo" class="pontuacaoEJogo">
-                <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
 
                 <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
-                    <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
+                    <div id="pontuacaoDuranteJogo" class="flex-colunar ">
                         <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
                         <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
                     </div>
-                    <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
+                    <div id="pontuacaoFinalJogo" class="flex-colunar ">
                         <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
                             <span id="spanPontuacaoFinal">***</span>
                         </span>
@@ -75,7 +95,7 @@
 
                 <div id="jogo" class="width-fit-content flex-colunar border-secondary">
 
-                    <div id="infoQuestao" class="padding-8">
+                    <div id="infoQuestao">
                         <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span
                                 id="qtdQuestoes"></span>
                             questões.</span>
@@ -173,7 +193,7 @@
     function iniciarQuiz() {
         document.getElementById('pontuacao').style.display = "flex"
         document.getElementById('jogo').style.display = "flex"
-        document.getElementById('btnIniciarQuiz').style.display = "none"
+        document.getElementById('telaInicio').style.display = "none"
 
         document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
 
