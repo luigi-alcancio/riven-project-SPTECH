@@ -1,20 +1,3 @@
-:root {
-    --primary-brand-color: #ED145B;
-    --secondary-brand-color: #0762C8;
-    --success: #198754;
-    --success-dark: #095c36;
-    --success-light: #9dd3ba;
-    --warning: #ffc107;
-    --warning-dark: #705400;
-    --warning-light: #fdebb3;
-    --danger: #dc3545;
-    --danger-dark: #990c19;
-    --danger-light: #f0c1c6;
-    --new-gray: #CCCCCC;
-    --new-black: #212427;
-    --new-white: #E8E8E8;
-}
-
 .quiz{
     padding-left: 60px;
     padding-top: 30px;
@@ -67,10 +50,9 @@
     font-size: 26px;
 }
 
-.pontuacaoEJogo span{
+.pontuacaoEJogo {
     color: #AFAFAF;
-    font-size: 24px;
-    flex: 1;
+    font-size: 18px;
 }
 
 button {
@@ -101,19 +83,129 @@ button:hover {
 
 }
 
-.border-primary {
-    justify-self: flex-end ;
-    background-color: #111111;
-    border: solid 2px #3C3C3C;
-    border-radius: 15px;
-    padding: 20px;
-}
-
+.border-primary,
 .border-secondary {
     background-color: #111111;
     border: solid 2px #3C3C3C;
-    border-radius: 15px;
+    border-radius: 20px;
+    padding: 32px;
+    gap: 24px;
+}
+
+#infoQuestao {
+    color: #D9C7A0;
+    font-size: 16px;
+}
+
+#spanQuestaoExibida {
+    color: #F1F1F1;
+    font-size: 28px;
+}
+
+#infoAlternativas {
+    font-size: 16px;
+}
+
+#opcoes,
+.linha_opcoes {
+    gap: 16px;
+}
+
+.linha_opcoes {
+    display: flex;
+}
+
+.linha_opcoes > span {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+    position: relative;
+}
+
+#opcoes .radio {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+}
+
+#opcoes .option {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 80px;
+    padding: 18px;
+    border: 2px solid #3C3C3C;
+    border-radius: 12px;
+    background-color: #1E1E1E;
+    color: #CFCFCF;
+    cursor: pointer;
+    overflow-wrap: anywhere;
+    transition: 0.3s;
+}
+
+#opcoes .option:hover {
+    background-color: #3A1620;
+    border-color: #80505E;
+}
+
+#opcoes .radio:checked + .option {
+    background-color: #501425;
+    border-color: #D9C7A0;
+    color: #F1F1F1;
+}
+
+#opcoes .radio:focus-visible + .option {
+    outline: 2px solid #D9C7A0;
+    outline-offset: 3px;
+}
+
+#pontuacao h2 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 32px;
+    color: #F1F1F1;
+    text-align: center;
+}
+
+#pontuacaoDuranteJogo,
+#pontuacaoFinalJogo {
+    gap: 16px;
+}
+
+#pontuacaoDuranteJogo > span {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px;
+    background-color: #1E1E1E;
+    border-radius: 12px;
+}
+
+#spanCertas {
+    color: #9DD3BA;
+    font-weight: bold;
+}
+
+#spanErradas {
+    color: #E8A1AB;
+    font-weight: bold;
+}
+
+#pontuacaoFinal {
+    color: #D9C7A0;
+    font-size: 24px;
+    text-align: center;
+}
+
+#msgFinal {
     padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.pontuacaoEJogo button {
+    max-width: 100%;
 }
 
 .text-bold {
@@ -122,22 +214,22 @@ button:hover {
 }
 
 .text-success-with-bg {
-    color: var(--success-dark);
-    background-color: var(--success-light);
+    color: #9DD3BA;
+    background-color: #142A20;
 }
 
 .text-warning-with-bg {
-    color: var(--warning-dark);
-    background-color: var(--warning-light);
+    color: #D9C7A0;
+    background-color: #302819;
 }
 
 .text-danger-with-bg {
-    color: var(--danger-dark);
-    background-color: var(--danger-light);
+    color: #E8A1AB;
+    background-color: #3A1620;
 }
 
 .text-new-gray {
-    color: var(--new-gray);
+    color: #CCCCCC;
 }
 
 .tela-inicio{

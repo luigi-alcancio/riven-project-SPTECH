@@ -81,9 +81,10 @@
             <div id="pontuacaoEJogo" class="pontuacaoEJogo">
 
                 <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
+                    <h2>Quiz concluído!</h2>
                     <div id="pontuacaoDuranteJogo" class="flex-colunar ">
-                        <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
-                        <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
+                        <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas">0</span></span>
+                        <span class="width-fit-content">Quantidade de erros: <span id="spanErradas">0</span></span>
                     </div>
                     <div id="pontuacaoFinalJogo" class="flex-colunar ">
                         <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
@@ -91,6 +92,7 @@
                         </span>
                         <span id="msgFinal" class="width-fit-content">***</span>
                     </div>
+                    <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
                 </div>
 
                 <div id="jogo" class="width-fit-content flex-colunar border-secondary">
@@ -110,29 +112,30 @@
                     </div>
 
                     <div id="opcoes" class="flex-colunar padding-8">
-                        <span>
-                            <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
-                            <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
-                        </span>
-                        <span>
-                            <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
-                            <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
-                        </span>
-                        <span>
-                            <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
-                            <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
-                        </span>
-                        <span>
-                            <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
-                            <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
-                        </span>
+                        <div class="linha_opcoes">
+                            <span>
+                                <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
+                                <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
+                            </span>
+                            <span>
+                                <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
+                                <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
+                            </span>
+                        </div>
+                        <div class="linha_opcoes">
+                            <span>
+                                <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
+                                <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
+                            </span>
+                            <span>
+                                <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
+                                <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
+                            </span>
+                        </div>
                     </div>
 
                     <div id="botoes" class="flex-colunar padding-8">
-                        <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
-                        <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
-                        <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
-                        <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
+                        <button onclick="avancar()" id="btnProx">Avançar para próxima questão</button>
                     </div>
                 </div>
             </div>
@@ -191,7 +194,7 @@
     }
 
     function iniciarQuiz() {
-        document.getElementById('pontuacao').style.display = "flex"
+        document.getElementById('pontuacao').style.display = "none"
         document.getElementById('jogo').style.display = "flex"
         document.getElementById('telaInicio').style.display = "none"
 
@@ -199,9 +202,7 @@
 
         preencherHTMLcomQuestaoAtual(0)
 
-        btnSubmeter.disabled = false
-        btnProx.disabled = true
-        // btnConcluir.disabled = true
+        btnProx.disabled = false
         btnTentarNovamente.disabled = true
     }
 
@@ -217,6 +218,12 @@
         document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
         document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
         document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+
+        if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
+            btnProx.innerHTML = "Finalizar quiz"
+        } else {
+            btnProx.innerHTML = "Avançar para próxima questão"
+        }
     }
 
     function submeter() {
@@ -232,13 +239,12 @@
 
         if (!hasChecked) {
             alert("Não há alternativas escolhidas. Escolha uma opção.")
+            return false
         } else {
-            btnSubmeter.disabled = true
-            btnProx.disabled = false
-
             habilitarAlternativas(false)
 
             checarResposta()
+            return true
         }
     }
 
@@ -253,15 +259,14 @@
     }
 
     function avancar() {
-        btnProx.disabled = true
-        btnSubmeter.disabled = false
+        // Só avança depois de validar e contabilizar a resposta escolhida.
+        if (!submeter()) {
+            return
+        }
 
         desmarcarRadioButtons()
 
-        if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
-            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
-        } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
-            alert("Atenção... a próxima é a ultima questão!")
+        if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
             preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
         } else {
             finalizarJogo()
@@ -350,11 +355,10 @@
         document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal)
         document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
 
-        document.getElementById('jogo').classList.add("text-new-gray")
+        document.getElementById('jogo').style.display = "none"
+        document.getElementById('pontuacao').style.display = "flex"
 
         btnProx.disabled = true
-        btnSubmeter.disabled = true
-        // btnConcluir.disabled = true
         btnTentarNovamente.disabled = false
 
     }
