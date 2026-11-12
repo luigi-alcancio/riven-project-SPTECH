@@ -1,0 +1,130 @@
+:root {
+    --primary-brand-color: #ED145B;
+    --secondary-brand-color: #0762C8;
+    --success: #198754;
+    --success-dark: #095c36;
+    --success-light: #9dd3ba;
+    --warning: #ffc107;
+    --warning-dark: #705400;
+    --warning-light: #fdebb3;
+    --danger: #dc3545;
+    --danger-dark: #990c19;
+    --danger-light: #f0c1c6;
+    --new-gray: #CCCCCC;
+    --new-black: #212427;
+    --new-white: #E8E8E8;
+}
+
+.quiz{
+    padding-left: 60px;
+    padding-top: 20px;
+    padding-bottom: 60px;
+    padding-right: 350px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.quiz::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background: url('../assets/imgs/background-quiz-2.jpg') no-repeat;
+    background-size: 101%;
+    background-position: -250% -10%;
+    filter: saturate(0.6) blur(1px) opacity(0.8) ;
+}
+
+.quiz::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background: linear-gradient(
+        90deg,
+        #111111 0%,
+        #111111 38%,
+        rgba(17, 17, 17, 0.92) 44%,
+        rgba(17, 17, 17, 0.70) 50%,
+        rgba(17, 17, 17, 0.40) 56%,
+        rgba(17, 17, 17, 0.15) 62%,
+        rgba(17, 17, 17, 0) 70%
+    );
+}
+
+.titulo-quiz h1{
+    color: white;
+    font-size: 34px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.titulo-quiz p{
+    color: #AFAFAF;
+    font-size: 24px;
+}
+
+.pontuacaoEJogo span{
+    color: #AFAFAF;
+    font-size: 24px;
+    flex: 1;
+}
+
+button {
+    font-family: monospace;
+    font-weight: bold;
+}
+
+.flex-colunar {
+    display: flex;
+    flex-direction: column;
+}
+
+.width-fit-content {
+    flex: 1;
+}
+
+.border-primary {
+    justify-self: flex-end ;
+    background-color: #111111;
+    border: solid 3px #3C3C3C;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.border-secondary {
+    background-color: #111111;
+    border: solid 3px #3C3C3C;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.padding-8 {
+    padding: 8px;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.text-success-with-bg {
+    color: var(--success-dark);
+    background-color: var(--success-light);
+}
+
+.text-warning-with-bg {
+    color: var(--warning-dark);
+    background-color: var(--warning-light);
+}
+
+.text-danger-with-bg {
+    color: var(--danger-dark);
+    background-color: var(--danger-light);
+}
+
+.text-new-gray {
+    color: var(--new-gray);
+}
