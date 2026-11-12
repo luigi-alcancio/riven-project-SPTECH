@@ -1,12 +1,15 @@
 .dashboard{
     padding-left: 60px;
-    padding-top: 10px;
+    padding-top: 40px;
     padding-bottom: 60px;
-    padding-right: 250px;
+    padding-right: 60px;
 
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
+
+    overflow-y: auto;
+    min-width: 0;
 }
 
 .dashboard::before {
@@ -48,7 +51,7 @@
 
 .titulo-dash p{
     color: #AFAFAF;
-    font-size: 24px;
+    font-size: 18px;
 }
 
 .kpi{
@@ -57,7 +60,7 @@
     border-radius: 15px;
     flex: 1;
 
-    padding: 18px 18px;
+    padding: 12px 18px;
 }
 
 .linha-kpi{
@@ -71,32 +74,34 @@
 
 .linha-kpi h2{
     color: white;
-    font-size: 36px;
+    font-size: 28px;
     font-family: 'DM Sans', sans-serif;
 }
 
 .linha-kpi p{
     color: #AFAFAF;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .linha-gráficos{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
     gap: 20px;
+    flex: 1;
+    min-height: 0;
 }
 
 .linha-gráficos h2{
     color: white;
-    font-size: 24px;
+    font-size: 20px;
     font-family: 'DM Sans', sans-serif;
 }
 
 .linha-gráficos p{
     color: #AFAFAF;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .grafico{
@@ -104,8 +109,11 @@
     border: solid 2px #3C3C3C;
     border-radius: 15px;
     flex: 1;
-
     padding: 18px 18px;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
 }
 
 .myChart{
@@ -142,7 +150,7 @@
 
 .linha-tabela h2{
     color: white;
-    font-size: 24px;
+    font-size: 20px;
     font-family: 'DM Sans', sans-serif;
 }
 
@@ -159,6 +167,12 @@
 
     border-top: solid 2px #3C3C3C;
     padding: 12px 0;
+}
+
+.area-canvas{
+    flex: 1;
+    min-height: 120px;
+    position: relative;
 }
 
  /* sobre o last-child dentro de um .linha, pegue o span que for o último filho do pai dele, apenas isso, apenas pra evitar criar mais uma classe nele */ 

@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../css/header-left.css">
     <link rel="icon" href="../assets/icon/favicon2.ico">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -79,12 +79,16 @@
                 <div class="grafico">
                     <h2>Elo dos jogadores</h2>
                     <p>Jogadores cadastrados por elo</p>
-                    <canvas id="myChart" class="myChart"></canvas>
+                    <div class="area-canvas">
+                        <canvas id="myChart"></canvas>
+                    </div>
                 </div>
                 <div class="grafico">
                     <h2>Média de acertos no quiz por elo</h2>
                     <p>Acertos médios (0 a 10)</p>
-                    <canvas id="myChart2" class="myChart"></canvas>
+                    <div class="area-canvas">
+                        <canvas id="myChart2"></canvas>
+                    </div>
                 </div>
 
             </div>
@@ -208,6 +212,7 @@
             }]
         },
         options: {
+            maintainAspectRatio: false,
             plugins: {
                 legend: { display: false }
             },
@@ -227,37 +232,37 @@
         plugins: [valoresNasBarras]
     });
 
-const acertosPorElo = [3.5, 4.3, 5.3, 6.2, 7.0, 7.9, 8.6, 9.2];
+    const acertosPorElo = [3.5, 4.3, 5.3, 6.2, 7.0, 7.9, 8.6, 9.2];
 
-let soma = 0;
+    let soma = 0;
 
-for (let i = 0; i < acertosPorElo.length; i++) {
-    soma += acertosPorElo[i];
-}
-
-const mediaGeral = soma / acertosPorElo.length;
-
-const textoDaMedia = mediaGeral.toFixed(1).replace('.', ',');
-
-const linhaMedia = [];
-
-for (let i = 0; i < acertosPorElo.length; i++) {
-    linhaMedia.push(mediaGeral);
-}
-
-// PLUGIN 2: escreve "média geral X" em cima da linha tracejada
-const textoMedia = {
-    id: 'textoMedia',
-    afterDatasetsDraw: function (chart) {
-        const caneta = chart.ctx;
-        const y = chart.scales.y.getPixelForValue(mediaGeral);
-
-        caneta.fillStyle = dourado;
-        caneta.font = 'bold 13px DM Sans';
-        caneta.textAlign = 'left';
-        caneta.fillText('média geral ' + textoDaMedia, chart.chartArea.left + 10, y - 8);
+    for (let i = 0; i < acertosPorElo.length; i++) {
+        soma += acertosPorElo[i];
     }
-};
+
+    const mediaGeral = soma / acertosPorElo.length;
+
+    const textoDaMedia = mediaGeral.toFixed(1).replace('.', ',');
+
+    const linhaMedia = [];
+
+    for (let i = 0; i < acertosPorElo.length; i++) {
+        linhaMedia.push(mediaGeral);
+    }
+
+    // PLUGIN 2: escreve "média geral X" em cima da linha tracejada
+    const textoMedia = {
+        id: 'textoMedia',
+        afterDatasetsDraw: function (chart) {
+            const caneta = chart.ctx;
+            const y = chart.scales.y.getPixelForValue(mediaGeral);
+
+            caneta.fillStyle = dourado;
+            caneta.font = 'bold 13px DM Sans';
+            caneta.textAlign = 'left';
+            caneta.fillText('média geral ' + textoDaMedia, chart.chartArea.left + 10, y - 8);
+        }
+    };
 
     new Chart(ctx2, {
         type: 'line',
@@ -285,6 +290,7 @@ const textoMedia = {
             ]
         },
         options: {
+            maintainAspectRatio: false,
             plugins: {
                 legend: { display: false }
             },
