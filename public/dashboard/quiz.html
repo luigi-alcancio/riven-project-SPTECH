@@ -52,18 +52,18 @@
         </div>
 
         <main class="quiz">
-            <div class="titulo-quiz">
-
-                <h1>Quiz</h1>
-                <p>Teste seu conhecimento de duelista</p>
-            </div>
-
             <div class="tela-inicio" id="telaInicio">
+
+                <div class="titulo-quiz">
+                    <h1>Você sabe duelar?</h1>
+                    <p>Coloque seu conhecimento de match-ups em prova</p>
+                </div>
+
                 <div class="card-inicio">
                     <div class="icone-inicio"><img src="../assets/icon/icon-riven-chibi.png" alt=""></div>
                     <h2>Pronto para a match-up?</h2>
                     <p>Responda as questões e fortifique seus conhecimentos.</p>
-                    <div class="chips"> 
+                    <div class="chips">
                         <span class="chip">
                             <img src="../assets/icon/list-numbers.svg">
                             3 questões</span>
@@ -83,17 +83,19 @@
                 <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
                     <h2>Quiz concluído!</h2>
                     <div id="pontuacaoDuranteJogo" class="flex-colunar ">
-                        <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas">0</span></span>
-                        <span class="width-fit-content">Quantidade de erros: <span id="spanErradas">0</span></span>
+                        <span>Quantidade de acertos: <span id="spanCertas">0</span></span>
+                        <span>Quantidade de erros: <span id="spanErradas">0</span></span>
                     </div>
                     <div id="pontuacaoFinalJogo" class="flex-colunar ">
-                        <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
+                        <span id="pontuacaoFinal">Pontuação Final:
                             <span id="spanPontuacaoFinal">***</span>
                         </span>
-                        <span id="msgFinal" class="width-fit-content">***</span>
+                        <span id="msgFinal">***</span>
                     </div>
                     <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
                 </div>
+
+
 
                 <div id="jogo" class="width-fit-content flex-colunar border-secondary">
 
@@ -114,17 +116,20 @@
                     <div id="opcoes" class="flex-colunar padding-8">
                         <div class="linha_opcoes">
                             <span>
-                                <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
+                                <input type="radio" id="primeiraOpcao" name="option" class="radio"
+                                    value="alternativaA" />
                                 <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
                             </span>
                             <span>
-                                <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
+                                <input type="radio" id="segundaOpcao" name="option" class="radio"
+                                    value="alternativaB" />
                                 <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
                             </span>
                         </div>
                         <div class="linha_opcoes">
                             <span>
-                                <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
+                                <input type="radio" id="terceiraOpcao" name="option" class="radio"
+                                    value="alternativaC" />
                                 <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
                             </span>
                             <span>

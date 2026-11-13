@@ -1,4 +1,4 @@
-.match-up{
+.match-up {
     padding-left: 60px;
     padding-top: 30px;
     padding-bottom: 60px;
@@ -18,7 +18,7 @@
     background: url('../assets/imgs/background-match.jpg') no-repeat;
     background-size: 110%;
     background-position: -250% 20%;
-    filter: saturate(0.6) blur(1px) opacity(0.8) ;
+    filter: saturate(0.6) blur(1px) opacity(0.8);
 }
 
 .match-up::after {
@@ -27,14 +27,45 @@
     inset: 0;
     z-index: -1;
 
-    background: linear-gradient(
-        90deg,
-        #111111 0%,
-        #111111 38%,
-        rgba(17, 17, 17, 0.92) 44%,
-        rgba(17, 17, 17, 0.70) 50%,
-        rgba(17, 17, 17, 0.40) 56%,
-        rgba(17, 17, 17, 0.15) 62%,
-        rgba(17, 17, 17, 0) 70%
-    );
+    background: linear-gradient(90deg,
+            #111111 0%,
+            #111111 38%,
+            rgba(17, 17, 17, 0.92) 44%,
+            rgba(17, 17, 17, 0.70) 50%,
+            rgba(17, 17, 17, 0.40) 56%,
+            rgba(17, 17, 17, 0.15) 62%,
+            rgba(17, 17, 17, 0) 70%);
+}
+
+.titulo-match-up h1 {
+    color: white;
+    font-size: 36px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.titulo-match-up p {
+    color: #AFAFAF;
+    font-size: 26px;
+}
+
+.filtro {
+    border: solid 2px #3C3C3C;
+    border-radius: 20px;
+    background-color: #3a1620;
+    height: 40px;
+    width: 170px;
+    color: #AFAFAF;
+    font-size: 18px;
+    align-self: center;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.filtro:hover {
+    transform: scale(1.02);
+    background-color: #501425;
+}
+
+.filtros-match-up input {
+    flex: 1;
 }

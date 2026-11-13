@@ -2,11 +2,14 @@
     padding-left: 60px;
     padding-top: 30px;
     padding-bottom: 60px;
-    padding-right: 350px;
+    padding-right: 170px;
 
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 20px;
+    text-align: center;
 }
 
 .quiz::before {
@@ -41,7 +44,7 @@
 
 .titulo-quiz h1{
     color: white;
-    font-size: 42px;
+    font-size: 36px;
     font-family: 'DM Sans', sans-serif;
 }
 
@@ -56,7 +59,7 @@
 }
 
 button {
-     border: solid 2px #3C3C3C;
+    border: solid 2px #3C3C3C;
     border-radius: 20px;
     background-color: #3a1620;
     height: 60px;
@@ -80,6 +83,8 @@ button:hover {
 
 .width-fit-content {
     flex: 1;
+    min-height: 500px;
+    min-width: 1000px;
 
 }
 
@@ -235,6 +240,7 @@ button:hover {
 .tela-inicio{
     flex: 1;
     display: flex;
+    flex-direction: column ;
     justify-content: center;
     align-items: center;
 }
