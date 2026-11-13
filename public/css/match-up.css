@@ -1,7 +1,7 @@
 .match-up {
     padding-left: 60px;
     padding-top: 30px;
-    padding-bottom: 60px;
+    padding-bottom: 40px;
     padding-right: 60px;
 
     display: flex;
@@ -52,7 +52,7 @@
     border: solid 2px #3C3C3C;
     border-radius: 20px;
     background-color: #3a1620;
-    height: 40px;
+    height: 55px;
     width: 170px;
     color: #AFAFAF;
     font-size: 18px;
@@ -68,4 +68,67 @@
 
 .filtros-match-up input {
     flex: 1;
+    border-radius: 16px;
+    padding-left: 14px;
+    background-color: #111111;
+    border: solid 2px #3C3C3C;
+}
+
+.filtros-match-up{
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.match-up-escolhida{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.match-up-escolhida button{
+    border: solid 2px #3C3C3C;
+    border-radius: 20px;
+    background-color: #801936;
+    height: 40px;
+    width: 170px;
+    color: #AFAFAF;
+    font-size: 18px;
+    align-self: center;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.match-up-escolhida button:hover {
+    transform: scale(1.02);
+    background-color: #b31a45;
+}
+
+.match-up-escolhida {
+    background-color: #111111;
+    border: solid 2px #3C3C3C;
+    border-radius: 20px;
+    height: 60px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.match-up-escolhida p {
+    color: #AFAFAF;
+    font-size: 26px;
+}
+
+.match-up-escolhida h2 {
+    color: white;
+    font-size: 28px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.painel-match{
+    flex: 1;
+    border: solid 2px #3C3C3C;
+    border-radius: 16px;
+    background-color: #111111;
+    padding: 20px 20px 20px 20px;
 }
