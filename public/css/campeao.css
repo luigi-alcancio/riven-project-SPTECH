@@ -1,0 +1,98 @@
+.main-campeao{
+    display: flex;
+    flex-direction: column;
+}
+
+.conteudo-superior {
+    flex: 55;
+
+    display: flex;
+    flex-direction: row;
+
+    padding-left: 40px;
+    padding-top: 30px;
+    padding-bottom: 60px;
+    padding-right: 60px;
+}
+
+.conteudo-superior::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background: url('../assets/imgs/background-campeao.jpg') no-repeat;
+    background-size: 85%;
+    background-position: 100% 0%;
+    filter: saturate(0.6) opacity(0.8);
+}
+
+.conteudo-superior::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background:
+        linear-gradient(
+        to top,
+        rgba(17, 17, 17, 1) 0%,
+        rgba(17, 17, 17, 1) 40%,
+        transparent 55%
+        ),
+        linear-gradient(
+        70deg,
+        #111111 0%,
+        #111111 48%,
+        rgba(17, 17, 17, 0.92) 54%,
+        rgba(17, 17, 17, 0.70) 60%,
+        rgba(17, 17, 17, 0.40) 66%,
+        rgba(17, 17, 17, 0.15) 72%,
+        rgba(17, 17, 17, 0) 80%
+    );
+
+    
+}
+
+.conteudo-inferior{
+    flex: 45;
+    background-color: #111111;
+}
+
+.dicas-container{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+}
+
+.dicas-container h1{
+    font-size: 72px;
+    color: #AFAFAF;
+}
+
+.subtitulo-superior{
+    font-size: 16px;
+    color: #AFAFAF;
+}
+
+.cor-destaque{
+    color: rgb(247, 207, 159);
+}
+
+.subtitulo{
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.dicas-container ul{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    gap: 22px;
+    margin-left: 20px;
+}
+
+.descricao-champ{
+    margin-bottom: 30px;
+}

@@ -27,7 +27,8 @@
     inset: 0;
     z-index: -1;
 
-    background: linear-gradient(90deg,
+    background: linear-gradient(
+        120deg,
             #111111 0%,
             #111111 38%,
             rgba(17, 17, 17, 0.92) 44%,
@@ -72,6 +73,7 @@
     padding-left: 14px;
     background-color: #111111;
     border: solid 2px #3C3C3C;
+    color: #AFAFAF;
 }
 
 .filtros-match-up{
@@ -88,7 +90,7 @@
 }
 
 .match-up-escolhida button{
-    border: solid 2px #3C3C3C;
+    border: none;
     border-radius: 20px;
     background-color: #801936;
     height: 40px;
@@ -116,7 +118,7 @@
 
 .match-up-escolhida p {
     color: #AFAFAF;
-    font-size: 26px;
+    font-size: 20px;
 }
 
 .match-up-escolhida h2 {
