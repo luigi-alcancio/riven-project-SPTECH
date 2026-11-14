@@ -57,6 +57,13 @@
 .conteudo-inferior{
     flex: 45;
     background-color: #111111;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 40px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .dicas-container{
@@ -67,7 +74,7 @@
 
 .dicas-container h1{
     font-size: 72px;
-    color: #AFAFAF;
+    color: white;
 }
 
 .subtitulo-superior{
@@ -80,12 +87,12 @@
 }
 
 .subtitulo{
-    font-size: 22px;
+    font-size: 24px;
     margin-bottom: 15px;
 }
 
 .dicas-container ul{
-    color: white;
+    color: rgba(255, 255, 255, 0.803);
     display: flex;
     flex-direction: column;
     font-size: 20px;
@@ -95,4 +102,140 @@
 
 .descricao-champ{
     margin-bottom: 30px;
+    font-size: 20px;
+}
+
+.card-dificuldade{
+    background-color: #111111;
+    border: solid 2px #3C3C3C;
+    border-radius: 16px;
+    width: 150px;
+    height: 120px;
+    padding: 15px 15px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    transition: 0.3s;
+}
+
+.card-dificuldade:hover{
+    transform: scale(1.02);
+}
+
+.card-dificuldade p{
+    font-size: 18px;
+    color: #AFAFAF;
+}
+
+.card-container{
+    flex: 1;
+    display: flex;
+    align-items: end;
+    justify-content: flex-end;
+}
+
+.linha-dificuldade{
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+}
+
+.parametro{
+    width: 30px;
+    height: 15px;
+    background-color: #3C3C3C;
+    border-radius: 16px;
+    margin-bottom: 6px;
+}
+
+.parametro-ativo{
+    background-color: rgb(255, 211, 157);
+}
+
+.linha-botao{
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    gap: 26px;
+}
+
+.botao{
+    flex: 1;
+    height: 70px;
+    border: solid 2px #3C3C3C;
+    border-radius: 16px;
+    background-color: #202020;
+    color: white;
+    font-size: 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.botao:hover{
+    transform: scale(1.02);
+    border-color: #72263b;
+}
+
+.nivel-dificuldade{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.container-dica-ouro{
+    width: 100%;
+    border: solid 2px rgba(255, 211, 157, 0.703);
+    background-color: rgb(70, 50, 26);
+    border-radius: 25px;
+    height: 70px;
+}
+
+.container-dica-nivel{
+    flex: 1 ;
+    background-color: #111111;
+    border: solid 2px #3C3C3C;
+    border-radius: 20px;
+    padding: 20px 25px;
+}
+
+.container-dica-nivel h3{
+    color: white;
+    font-size: 26px;
+    margin-bottom: 6px;
+}
+
+.dica-nivel{
+    color: #AFAFAF;
+    font-size: 22px;
+}
+
+.container-dica-ouro{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding: 0px 40px;
+}
+
+.container-dica-ouro h3{
+    font-size: 26px;
+}
+
+.dica-ouro{
+    color: white;
+    font-size: 18px;
+    margin-top: 4px;
+}
+
+.container-dica-ouro img{
+    height: 30px;
+    filter: saturate(0.4);
+}
+
+.botao-ativo{
+    background-color: #3a1620;
+    border: solid 2px #72263b;
 }
