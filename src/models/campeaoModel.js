@@ -10,7 +10,7 @@ function listar() {
 
 function cadastrar(id_usuario, id_campeao) {
     var instrucao = `
-        INSERT INTO carro (id_usuario, id_campeao) VALUES (${id_usuario}, ${id_campeao});
+        INSERT INTO curtida_campeao (id_usuario, id_campeao) VALUES (${id_usuario}, ${id_campeao});
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

@@ -21,6 +21,8 @@ Além de seu propósito educacional para os jogadores, o projeto tem como objeti
 
 O projeto deve priorizar soluções simples, didáticas e compreensíveis, permitindo que o desenvolvedor aprenda durante cada etapa da implementação.
 
+O desenvolvedor é estudante do 1º semestre de Análise e Desenvolvimento de Sistemas e está aprendendo. Conhece pouco de manipulação de DOM. O objetivo é entender o que está sendo feito, e não apenas receber o código pronto.
+
 ## Tecnologias
 
 As tecnologias e ferramentas previstas para o projeto são:
@@ -101,6 +103,35 @@ A implementação deve respeitar a arquitetura existente e priorizar o reaprovei
 - Utilizar funções com responsabilidades claras.
 - Evitar duplicação desnecessária de código.
 - Explicar os conceitos novos utilizados durante as implementações.
+- Utilizar apenas estruturas básicas: `for`, `if/else`, `else if` e `function`.
+- Não utilizar arrow functions, `.map`, `.filter`, `.forEach`, spread, destructuring nem outras sintaxes avançadas.
+- As regras de JavaScript acima valem para o frontend e para o restante do projeto. Os arquivos do fluxo de rotas têm uma exceção, descrita na seção "Rotas da API".
+- Utilizar JavaScript puro. A única biblioteca permitida é o Chart.js, já prevista para a dashboard.
+
+### Manipulação do DOM
+
+- Para pegar elementos, utilizar `document.querySelector`, `document.querySelectorAll` e `document.getElementById`.
+- Para percorrer os elementos retornados pelo `querySelectorAll`, utilizar o `for`.
+- Para esconder ou mostrar elementos, utilizar `style.display = "none"` e `style.display = "flex"`.
+- Para criar elementos novos, utilizar `createElement` e `appendChild`.
+- Para alterar estilos por meio de classes, utilizar `classList.add`, `classList.remove` e `classList.contains`.
+
+### Rotas da API
+
+O desenvolvedor conhece pouco sobre rotas. Ao criar ou alterar uma rota, o agente deve ensinar o fluxo e seguir o documento `PASSO_A_PASSO_CRIAR_ROTA_NA_API.md`, localizado na pasta `DOCUMENTOS_DE_APOIO`.
+
+- Ler o documento antes de montar o plano de implementação.
+- Seguir os passos na ordem descrita no documento, sem pular etapas e sem criar uma estrutura própria.
+- Ensinar o fluxo completo da requisição, de acordo com a implementação real do projeto: de onde ela sai na interface, por quais arquivos passa até chegar ao banco de dados e como a resposta volta para a tela.
+- Explicar, a cada passo, o papel do arquivo que está sendo criado ou alterado e por que ele é necessário.
+- Se o documento conflitar com alguma regra deste arquivo (além da exceção de JavaScript descrita abaixo) ou com o código existente, apontar a incoerência e perguntar ao desenvolvedor antes de seguir.
+
+#### Exceção às regras de JavaScript nos arquivos de rotas
+
+- Nos arquivos do fluxo de rotas (`app.js`, os arquivos de `routes`, `controllers` e `models`), o agente pode utilizar tudo o que o documento utiliza e o padrão já existente nesses arquivos, mesmo que as regras de JavaScript acima proíbam. Isso inclui `var`, `const`, arrow functions, `.then()` e `.catch()`, template strings e a forma abreviada de exportar objetos com `module.exports`.
+- Nessas rotas, esta exceção tem prioridade sobre as regras de JavaScript acima, inclusive sobre o uso de `let`.
+- A exceção vale apenas para esses arquivos. No frontend e no restante do projeto, continuam valendo as regras de JavaScript e de DOM.
+- Quando usar um conceito dessa exceção, explicar o que ele é e por que está sendo usado (por exemplo, o que é uma promise e para que servem o `.then()` e o `.catch()`).
 
 ### Nomenclatura
 
@@ -123,6 +154,7 @@ Respeitar as limitações e convenções das tecnologias utilizadas, especialmen
 - Preservar o design e o comportamento existentes.
 - Priorizar soluções CSS simples antes de recorrer a JavaScript para resolver problemas exclusivamente visuais.
 - Não alterar elementos visuais fora do escopo solicitado.
+- Utilizar apenas flexbox nos layouts de CSS. Nunca utilizar `display: grid`.
 
 ### Commits
 
@@ -187,6 +219,13 @@ Por isso, toda implementação deve ser acompanhada de uma explicação que apre
 Sempre que possível, explicar o raciocínio passo a passo e evitar simplesmente fornecer código pronto sem contextualização.
 
 Não presumir conhecimentos avançados do desenvolvedor. Introduzir conceitos novos gradualmente e esclarecer termos técnicos quando necessário.
+
+Além disso, em toda implementação que envolva código:
+
+- Explicar cada comando novo utilizado em uma frase simples.
+- Comentar o código em português, dizendo o que cada bloco faz.
+- No final, indicar onde o desenvolvedor mexe para mudar itens como texto, cor, quantidade de cards e nome de classe.
+- Se existir uma forma simples e uma forma avançada de resolver, utilizar a simples e avisar que a outra existe.
 
 ### Segurança e integridade dos dados
 

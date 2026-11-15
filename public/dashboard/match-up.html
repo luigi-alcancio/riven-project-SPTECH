@@ -67,7 +67,7 @@
             <div class="painel-match"></div>
             <div class="match-up-escolhida">
                 <p>Match-up escolhida</p>
-                <h2>Riven vs Aatrox</h2>
+                <h2 id="nome_match_up">Selecione um campeão</h2>
                 <button class="ver-match-up">Ver match-up</button>
             </div>
         </main>
@@ -78,5 +78,80 @@
 
 </html>
 <script>
+    // Guarda o ID do campeão clicado para usar nas próximas ações da match-up.
+    let id_campeao_selecionado = null;
 
+    // Busca os campeões assim que o navegador chega a este script, após o HTML da tela.
+    carregar_campeoes();
+
+    function carregar_campeoes() {
+        let painel_match = document.querySelector(".painel-match");
+        painel_match.textContent = "Carregando campeões...";
+
+        // fetch faz uma requisição GET. O primeiro then recebe a resposta da API.
+        fetch("/campeao/listar").then(function (resposta) {
+            // ok indica sucesso HTTP. Um erro lançado aqui será tratado pelo catch abaixo.
+            if (resposta.ok) {
+                // json transforma o JSON da resposta em dados que o JavaScript pode usar.
+                return resposta.json();
+            } else {
+                throw new Error("Não foi possível buscar os campeões.");
+            }
+        }).then(function (campeoes) {
+            // Este segundo then recebe os dados depois que resposta.json() termina.
+            painel_match.textContent = "";
+
+            if (campeoes.length == 0) {
+                painel_match.textContent = "Nenhum campeão cadastrado.";
+            } else {
+                // Cada registro retornado pela rota vira um botão com imagem e nome.
+                for (let i = 0; i < campeoes.length; i++) {
+                    let campeao = campeoes[i];
+                    let card_campeao = document.createElement("button");
+                    let imagem_campeao = document.createElement("img");
+                    let nome_campeao = document.createElement("span");
+
+                    card_campeao.type = "button";
+                    card_campeao.classList.add("card_campeao");
+                    // dataset guarda o ID do banco no atributo data-id do próprio card.
+                    card_campeao.dataset.id = campeao.id;
+                    card_campeao.setAttribute("aria-pressed", "false");
+                    imagem_campeao.src = campeao.loadingScreenIMG;
+                    imagem_campeao.alt = campeao.nome;
+                    nome_campeao.textContent = campeao.nome;
+
+                    // this é o botão clicado, permitindo ler seu ID e seu nome.
+                    card_campeao.onclick = function () {
+                        selecionar_campeao(this);
+                    };
+
+                    // appendChild coloca a imagem e o nome no card, e o card no painel.
+                    card_campeao.appendChild(imagem_campeao);
+                    card_campeao.appendChild(nome_campeao);
+                    painel_match.appendChild(card_campeao);
+                }
+            }
+        }).catch(function (erro) {
+            // catch recebe falhas de conexão, erros HTTP lançados e falhas ao ler o JSON.
+            painel_match.textContent = "Não foi possível carregar os campeões. Tente recarregar a página.";
+            console.error("Erro ao carregar campeões:", erro);
+        });
+    }
+
+    function selecionar_campeao(card_campeao) {
+        // Remove a seleção anterior para manter somente um campeão selecionado.
+        let cards_campeao = document.querySelectorAll(".card_campeao");
+
+        for (let i = 0; i < cards_campeao.length; i++) {
+            cards_campeao[i].classList.remove("card_campeao_selecionado");
+            cards_campeao[i].setAttribute("aria-pressed", "false");
+        }
+
+        // dataset devolve texto; Number converte o ID para um número.
+        id_campeao_selecionado = Number(card_campeao.dataset.id);
+        card_campeao.classList.add("card_campeao_selecionado");
+        card_campeao.setAttribute("aria-pressed", "true");
+        document.getElementById("nome_match_up").textContent =
+            "Riven vs " + card_campeao.querySelector("span").textContent;
+    }
 </script>
