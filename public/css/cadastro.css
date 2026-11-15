@@ -132,8 +132,6 @@ p{
   transform: scale(1);
 }
 
-
-
 .form-opcoes label{
   color: #FFFFFF;
 }
@@ -179,9 +177,24 @@ form{
 }
 
 .form-rodape a{
-    color: #FFFFFF;
+  color: #FFFFFF;
+  position: relative;
 }
 
+.form-rodape a::before{
+  content: '';
+  background-color: #FFFFFF;
+  height: 2px;
+  width: 0%;
+  left: 5px;
+  bottom: 0;
+  position: absolute;
+  transition: 0.4s;
+}
+
+.form-rodape a:hover::before{
+  width: 92%;
+}
 .campo input{
     border-radius: 9px;
     height: 40px;
@@ -203,6 +216,12 @@ form{
     margin-bottom: 20px;
     font-size: 16px;
     font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.botao:hover{
+  transform: scale(1.02);
 }
 
 .avatar-caixa {
@@ -229,6 +248,11 @@ form{
 }
 
 .link-voltar{
-  text-align: center;
-  color: #FFFFFF;
+    text-align: center;
+    color: #FFFFFF;
+    transition: 0.2s;
+}
+
+.link-voltar:hover{
+  transform: translateX(-3px);
 }

@@ -5,7 +5,7 @@ Endpoints são as funções disponíveis em nossa API, que aceitam parâmetros e
 
 Para criar uma nova rota na API, siga esse caminho:
 
-### Para esse exemplo, irei criar um cadastro e consulta de carros.
+### Para esse exemplo, irei criar um cadastro e consulta de carros. 
 
 ### Importando arquivo que contém as rotas
 
