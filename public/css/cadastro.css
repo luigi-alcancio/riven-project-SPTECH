@@ -256,3 +256,13 @@ form{
 .link-voltar:hover{
   transform: translateX(-3px);
 }
+
+#div_mensagem_senha{
+  color: red;
+  text-align: center;
+}
+
+#div_mensagem_confirmar_senha{
+  color: red;
+  text-align: center;
+}

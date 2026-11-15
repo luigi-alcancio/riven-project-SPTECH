@@ -80,7 +80,7 @@
 </html>
 
 <script>
-
+    let tentativas = 3;
 
     function entrar() {
 
@@ -88,8 +88,13 @@
         var senhaVar = senha_input.value;
 
         if (emailVar == "" || senhaVar == "") {
-            alert('ERROR: Por favor insira um valor de entrada');
+            alert('Erro: Por favor insira um valor de entrada');
             return;
+        }
+
+        if(tentativas <= 0){
+            alert('Erro: Você já tentou muitas vezes, por favor reinicie a página')
+            return
         }
 
         console.log("FORM LOGIN: ", emailVar);
@@ -119,18 +124,18 @@
 
                     setTimeout(function () {
                         window.location = "./dashboard/cards.html";
-                    }, 1000); // apenas para exibir o loading
+                    }, 2000); // apenas para exibir o loading
 
                 });
 
             } else {
 
                 console.log("Houve um erro ao tentar realizar o login!");
-
                 resposta.text().then(texto => {
                     console.error(texto);
                     if(toString.resultado_autenticar == undefined){
-                        alert('Usuário não está cadastrado')
+                        tentativas--
+                        alert(`Usuário não está cadastrado. Você ainda tem: ${tentativas} tentativas`)
                     };
                 });
             }

@@ -49,12 +49,14 @@
           </div>
           <div class="campo">
             <label for="senha_input">Senha</label>
-            <input type="password" id="senha_input">
+            <input type="password" id="senha_input" onkeyup="verificarSenha()">
+            <div id="div_mensagem_senha"></div>
           </div>
 
           <div class="campo">
             <label for="confirmacao_senha_input">Confirmar senha</label>
-            <input type="password" id="confirmacao_senha_input">
+            <input type="password" id="confirmacao_senha_input" onkeyup="verificarConfirmarSenha()">
+            <div id="div_mensagem_confirmar_senha"></div>
           </div>
           <div class="form-opcoes">
             <label><input type="checkbox" class="checkbox"> Li e aceito os
@@ -70,7 +72,7 @@
 
         <div id="mensagem_erro"></div>
 
-      </div>      
+      </div>
 
       <div class="divisoria">
         <img src="assets/imgs/divisoria.png">
@@ -87,27 +89,43 @@
 </html>
 
 <script>
+  let criterios = 0;
+  let senhasIguais;
+
   function cadastrar() {
     // aguardar();
-
+    
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
-    var nomeVar = nome_input.value;
-    var emailVar = email_input.value;
-    var senhaVar = senha_input.value;
-    var confirmacaoSenhaVar = confirmacao_senha_input.value;
+    let nomeVar = nome_input.value;
+    let emailVar = email_input.value;
+    let senhaVar = senha_input.value;
+    let confirmacaoSenhaVar = confirmacao_senha_input.value;
 
-    // Verificando se há algum campo em branco
-    if (
-      nomeVar == "" ||
-      emailVar == "" ||
-      senhaVar == "" ||
-      confirmacaoSenhaVar == ""
-    ) {
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
+    verificarConfirmarSenha()
 
-      finalizarAguardar();
+    if(nomeVar == ''){
+      alert("Erro: Por favor insira um nome");
+      return false;
+    }
+
+    if(emailVar == ''){
+      alert("Erro: Por favor insira um email");
+      return false;
+    }
+
+    if(!emailVar.includes('@')){
+      alert("Erro: Por favor insira um email válido");
+      return false;
+    }
+
+    if (!(criterios == 3)){
+      alert("Erro: Por favor insira uma senha forte");
+      return false;
+    }
+
+    if (!senhasIguais) {
+      alert("Erro: As senhas precisam ser iguais!");
       return false;
     }
 
@@ -148,5 +166,43 @@
       });
 
     return false;
+  }
+
+  function verificarSenha() {
+    let senha = senha_input.value;
+    let tamanho = senha.length >= 8;
+    let maiusculas = senha != senha.toLowerCase();
+    let minusculas = senha != senha.toUpperCase();
+    criterios = 0;
+
+    if (tamanho) criterios++;
+    if (maiusculas) criterios++;
+    if (minusculas) criterios++;
+
+    if (criterios == 3) {
+      div_mensagem_senha.innerHTML = ''
+    } else if (criterios == 2 && senha.length > 4) {
+      div_mensagem_senha.innerHTML = `Senha Média. Utilize maiúsculas, minúsculas <br> e pelo menos 8 caracteres.`  // atingiu 2 critérios de segurança
+    } else if (criterios == 2) {
+      div_mensagem_senha.innerHTML = `Senha Fraca. Utilize maiúsculas, minúsculas <br> e pelo menos 8 caracteres.`  // atingiu 2 critérios de segurança
+    } else if (criterios == 1) {
+      div_mensagem_senha.innerHTML = `Senha Insegura. Utilize maiúsculas, minúsculas <br> e pelo menos 8 caracteres.`  // atingiu 1 critério de segurança
+    } else {
+      div_mensagem_senha.innerHTML = `Senha Insegura. Utilize maiúsculas, minúsculas <br> e pelo menos 8 caracteres.`  // não atingiu nenhum critério de segurança  
+    }
+
+  }
+
+  function verificarConfirmarSenha() {
+    let senha = senha_input.value;
+    let confirmarSenha = confirmacao_senha_input.value;
+
+    if(senha == confirmarSenha){
+      div_mensagem_confirmar_senha.innerHTML = ``
+      senhasIguais = true
+    }else{
+      senhasIguais = false
+      div_mensagem_confirmar_senha.innerHTML = `As senhas precisam ser iguais!`
+    }
   }
 </script>
