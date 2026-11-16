@@ -52,48 +52,44 @@
         </div>
 
         <main class="main-campeao">
-            <div class="conteudo-superior">
+            <div class="conteudo-superior" id="conteudo_superior">
                 <div class="dicas-container">
                     <p class="subtitulo-superior">Riven vs</p>
-                    <h1 class="nome-champ">Yasuo</h1>
-                    <p class="descricao-champ cor-destaque">O imperdoável</p>
+                    <h1 class="nome-champ" id="nome_campeao">Carregando...</h1>
+                    <p class="descricao-champ cor-destaque" id="descricao_campeao"></p>
                     <p class="cor-destaque subtitulo">Principais dicas</p>
                     <ul>
-                        <li class="primeira-dica">Jogar o Q na diagonal, dessa forma desviando do Q do yasuo sem a perda
-                            do próprio dano.</li>
-                        <li class="segunda-dica">A passiva do yasuo mitiga muito dano, tire ela antes de comprar uma
-                            troca.</li>
-                        <li class="terceira-dica">Use o seu W para acertar o 3Q ou a ultimate, impossibilitando ele de
-                            desviar ou usar a barreira</li>
+                        <li class="primeira-dica" id="dica_geral_1"></li>
+                        <li class="segunda-dica" id="dica_geral_2"></li>
+                        <li class="terceira-dica" id="dica_geral_3"></li>
                     </ul>
                 </div>
                 <div class="card-container">
                     <div class="card-dificuldade">
-                        <div class="linha-dificuldade">
-                            <div class="parametro parametro-ativo"></div>
-                            <div class="parametro parametro-ativo"></div>
+                        <div class="linha-dificuldade" id="indicadores_dificuldade">
+                            <div class="parametro"></div>
+                            <div class="parametro"></div>
                             <div class="parametro"></div>
                         </div>
                         <p>Dificuldade</p>
-                        <span class="cor-destaque nivel-dificuldade">Média</span>
+                        <span class="cor-destaque nivel-dificuldade" id="dificuldade_campeao"></span>
                     </div>
                 </div>
             </div>
             <div class="conteudo-inferior">
-                <div class="linha-botao">
-                    <button class="botao botao-ativo">Nivel 1 ao 5</button>
-                    <button class="botao">Nivel 6 ao 11</button>
-                    <button class="botao">Nivel 12 ao máximo</button>
+                <div class="linha-botao" id="botoes_nivel">
+                    <button class="botao botao-ativo" id="btn_nivel_1_5" onclick="mostrar_dica_nivel(1)" disabled>Nivel 1 ao 5</button>
+                    <button class="botao" id="btn_nivel_6_11" onclick="mostrar_dica_nivel(2)" disabled>Nivel 6 ao 11</button>
+                    <button class="botao" id="btn_nivel_12_max" onclick="mostrar_dica_nivel(3)" disabled>Nivel 12 ao máximo</button>
                 </div>
                 <div class="container-dica-nivel">
-                    <h3>Nivel 1 ao 5</h3>
-                    <p class="dica-nivel">Riven é muito forte contra bonecos squish, jogue pressionando, 
-                        tanto para ganhar pressão usufruindo do clear wave quanto trocar quando ele não tem passiva.</p>
+                    <h3 id="titulo_dica_nivel">Nivel 1 ao 5</h3>
+                    <p class="dica-nivel" id="dica_nivel"></p>
                 </div>
                 <div class="container-dica-ouro">
                     <img src="../assets/icon/icon-star.svg" alt="estrela-amarela">
                     <h3 class="cor-destaque">Dica de ouro:</h3>
-                    <p class="dica-ouro">O Q da Riven, tira a passiva do yasuo e o osso revestido de uma vez, usando a runa "chamuscar"</p>
+                    <p class="dica-ouro" id="dica_ouro"></p>
                 </div>
             </div>
 
@@ -105,5 +101,129 @@
 
 </html>
 <script>
+    // Guarda o registro completo encontrado no JSON para usar também nos botões de nível.
+    let campeao_selecionado = null;
 
+    // Inicia a consulta após o navegador montar os elementos desta página.
+    carregar_campeao();
+
+    function carregar_campeao() {
+        // getItem lê o ID que a tela de match-ups guardou na sessão desta aba.
+        let id_campeao = sessionStorage.getItem("id_campeao_selecionado");
+
+        if (id_campeao != null && Number(id_campeao) > 0) {
+            // O primeiro then recebe a resposta HTTP da rota que já existe.
+            fetch("/campeao/listar").then(function (resposta) {
+                if (resposta.ok) {
+                    // Retorna a leitura do JSON para o próximo then aguardar os dados.
+                    return resposta.json();
+                } else {
+                    // O fetch não trata um status HTTP de erro sozinho; lançamos para o catch.
+                    throw new Error("Não foi possível consultar os campeões.");
+                }
+            }).then(function (campeoes) {
+                // Percorre a lista e guarda apenas o registro com o ID escolhido no card.
+                for (let i = 0; i < campeoes.length; i++) {
+                    if (Number(campeoes[i].id) == Number(id_campeao)) {
+                        campeao_selecionado = campeoes[i];
+                    }
+                }
+
+                if (campeao_selecionado != null) {
+                    preencher_campeao();
+                } else {
+                    mostrar_erro_campeao("Campeão não encontrado. Escolha outro na tela de Match-ups.");
+                }
+            }).catch(function (erro) {
+                // Trata falhas de conexão, de leitura do JSON ou o erro lançado acima.
+                mostrar_erro_campeao("Não foi possível carregar o campeão. Tente recarregar a página.");
+                console.error("Erro ao carregar campeão:", erro);
+            });
+        } else {
+            // Sem um ID válido, orienta o usuário a selecionar um card primeiro.
+            mostrar_erro_campeao("Selecione um campeão na tela de Match-ups.");
+        }
+    }
+
+    function preencher_campeao() {
+        // Preenche os textos nos elementos já existentes, sem criar outra estrutura HTML.
+        document.getElementById("nome_campeao").textContent = campeao_selecionado.nome;
+        document.getElementById("descricao_campeao").textContent = campeao_selecionado.descricao;
+        document.getElementById("dica_geral_1").textContent = campeao_selecionado.dica_geral_1;
+        document.getElementById("dica_geral_2").textContent = campeao_selecionado.dica_geral_2;
+        document.getElementById("dica_geral_3").textContent = campeao_selecionado.dica_geral_3;
+        document.getElementById("dica_ouro").textContent = campeao_selecionado.dica_ouro;
+        document.getElementById("dificuldade_campeao").textContent = campeao_selecionado.dificuldade;
+
+        // O ::before usa esta variável CSS, que recebe a URL do campo backGroundIMG do banco.
+        document.getElementById("conteudo_superior").style.setProperty(
+            "--imagem_campeao", 'url("' + campeao_selecionado.backGroundIMG + '")'
+        );
+
+        // Habilita os botões somente depois que as dicas do campeão estão disponíveis.
+        let botoes_nivel = document.querySelectorAll("#botoes_nivel .botao");
+        for (let i = 0; i < botoes_nivel.length; i++) {
+            botoes_nivel[i].disabled = false;
+        }
+
+        atualizar_dificuldade();
+        mostrar_dica_nivel(1);
+    }
+
+    function atualizar_dificuldade() {
+        // Define quantos indicadores devem ficar ativos de acordo com a dificuldade.
+        let quantidade_ativos = 0;
+
+        if (campeao_selecionado.dificuldade == "Fácil") {
+            quantidade_ativos = 1;
+        } else if (campeao_selecionado.dificuldade == "Média") {
+            quantidade_ativos = 2;
+        } else if (campeao_selecionado.dificuldade == "Difícil") {
+            quantidade_ativos = 3;
+        }
+
+        // O índice começa em 0: ativa os primeiros e desativa os que sobram.
+        let parametros = document.querySelectorAll("#indicadores_dificuldade .parametro");
+        for (let i = 0; i < parametros.length; i++) {
+            if (i < quantidade_ativos) {
+                parametros[i].classList.add("parametro-ativo");
+            } else {
+                parametros[i].classList.remove("parametro-ativo");
+            }
+        }
+    }
+
+    function mostrar_dica_nivel(nivel) {
+        // Não troca dicas enquanto a consulta ainda não encontrou o campeão.
+        if (campeao_selecionado == null) {
+            return;
+        }
+
+        // Retira o destaque anterior para marcar somente o botão escolhido.
+        let botoes_nivel = document.querySelectorAll("#botoes_nivel .botao");
+        for (let i = 0; i < botoes_nivel.length; i++) {
+            botoes_nivel[i].classList.remove("botao-ativo");
+        }
+
+        // Cada número recebido pelo onclick corresponde a uma faixa de nível.
+        if (nivel == 1) {
+            document.getElementById("titulo_dica_nivel").textContent = "Nivel 1 ao 5";
+            document.getElementById("dica_nivel").textContent = campeao_selecionado.dica_nivel_1_5;
+            document.getElementById("btn_nivel_1_5").classList.add("botao-ativo");
+        } else if (nivel == 2) {
+            document.getElementById("titulo_dica_nivel").textContent = "Nivel 6 ao 11";
+            document.getElementById("dica_nivel").textContent = campeao_selecionado.dica_nivel_6_11;
+            document.getElementById("btn_nivel_6_11").classList.add("botao-ativo");
+        } else if (nivel == 3) {
+            document.getElementById("titulo_dica_nivel").textContent = "Nivel 12 ao máximo";
+            document.getElementById("dica_nivel").textContent = campeao_selecionado.dica_nivel_12_max;
+            document.getElementById("btn_nivel_12_max").classList.add("botao-ativo");
+        }
+    }
+
+    function mostrar_erro_campeao(mensagem) {
+        // Usa os próprios espaços de nome e descrição para informar o problema.
+        document.getElementById("nome_campeao").textContent = "Campeão indisponível";
+        document.getElementById("descricao_campeao").textContent = mensagem;
+    }
 </script>

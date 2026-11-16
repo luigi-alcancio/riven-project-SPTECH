@@ -68,7 +68,7 @@
             <div class="match-up-escolhida">
                 <p>Match-up escolhida</p>
                 <h2 id="nome_match_up">Selecione um campeão</h2>
-                <button class="ver-match-up">Ver match-up</button>
+                <button class="ver-match-up" id="btn_ver_match_up" onclick="ver_match_up()">Ver match-up</button>
             </div>
         </main>
 
@@ -153,5 +153,18 @@
         card_campeao.setAttribute("aria-pressed", "true");
         document.getElementById("nome_match_up").textContent =
             "Riven vs " + card_campeao.querySelector("span").textContent;
+
+    }
+
+    function ver_match_up() {
+        // Só confirma a seleção e abre a próxima página quando o usuário clica no botão.
+        if (id_campeao_selecionado != null) {
+            // Guarda o ID na sessão da aba para a página do campeão recuperar.
+            sessionStorage.setItem("id_campeao_selecionado", id_campeao_selecionado);
+            window.location.href = "campeao.html";
+        } else {
+            // Orienta o usuário quando ele tenta continuar sem selecionar um card.
+            alert("Selecione um campeão antes de ver a match-up.");
+        }
     }
 </script>
