@@ -58,10 +58,11 @@
             </div>
             <div class="filtros-match-up">
                 <input type="text" id="ipt_campeao" placeholder="Pesquisar campeão...">
-                <button class="filtro filtro-ativo">Todos</button>
-                <button class="filtro lutador">Lutadores</button>
-                <button class="filtro tanque">Tanques</button>
-                <button class="filtro mago">Magos</button>
+                <!-- Cada clique informa o tipo desejado e o próprio botão para destacar. -->
+                <button class="filtro filtro-ativo" onclick="filtrar_campeoes('Todos', this)">Todos</button>
+                <button class="filtro lutador" onclick="filtrar_campeoes('Lutador', this)">Lutadores</button>
+                <button class="filtro tanque" onclick="filtrar_campeoes('Tanque', this)">Tanques</button>
+                <button class="filtro mago" onclick="filtrar_campeoes('Mago', this)">Magos</button>
                 <button class="filtro favoritos">Favoritos</button>
             </div>
             <div class="painel-match"></div>
@@ -80,6 +81,9 @@
 <script>
     // Guarda o ID do campeão clicado para usar nas próximas ações da match-up.
     let id_campeao_selecionado = null;
+
+    // Mantém o filtro escolhido mesmo se os campeões ainda estiverem carregando.
+    let tipo_filtro_selecionado = "Todos";
 
     // Busca os campeões assim que o navegador chega a este script, após o HTML da tela.
     carregar_campeoes();
@@ -115,6 +119,8 @@
                     card_campeao.classList.add("card_campeao");
                     // dataset guarda o ID do banco no atributo data-id do próprio card.
                     card_campeao.dataset.id = campeao.id;
+                    // Guarda o tipo vindo do banco no atributo data-tipo para usar no filtro.
+                    card_campeao.dataset.tipo = campeao.tipo;
                     card_campeao.setAttribute("aria-pressed", "false");
                     imagem_campeao.src = campeao.loadingScreenIMG;
                     imagem_campeao.alt = campeao.nome;
@@ -130,12 +136,37 @@
                     card_campeao.appendChild(nome_campeao);
                     painel_match.appendChild(card_campeao);
                 }
+
+                // Aplica aos novos cards o filtro escolhido durante o carregamento.
+                filtrar_campeoes(tipo_filtro_selecionado, document.querySelector(".filtro-ativo"));
             }
         }).catch(function (erro) {
             // catch recebe falhas de conexão, erros HTTP lançados e falhas ao ler o JSON.
             painel_match.textContent = "Não foi possível carregar os campeões. Tente recarregar a página.";
             console.error("Erro ao carregar campeões:", erro);
         });
+    }
+
+    function filtrar_campeoes(tipo, botao) {
+        // Guarda a escolha e pega todos os cards que já foram criados na tela.
+        tipo_filtro_selecionado = tipo;
+        let cards_campeao = document.querySelectorAll(".card_campeao");
+
+        // Mostra todos ou somente os cards cujo tipo corresponde ao filtro escolhido.
+        for (let i = 0; i < cards_campeao.length; i++) {
+            if (tipo == "Todos" || cards_campeao[i].dataset.tipo == tipo) {
+                cards_campeao[i].style.display = "flex";
+            } else {
+                cards_campeao[i].style.display = "none";
+            }
+        }
+
+        // Remove o destaque anterior e destaca somente o botão clicado.
+        let botoes_filtro = document.querySelectorAll(".filtro");
+        for (let i = 0; i < botoes_filtro.length; i++) {
+            botoes_filtro[i].classList.remove("filtro-ativo");
+        }
+        botao.classList.add("filtro-ativo");
     }
 
     function selecionar_campeao(card_campeao) {
