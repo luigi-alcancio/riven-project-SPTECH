@@ -57,7 +57,8 @@
                 <p>Selecione o inimigo para ver a match-up contra a Riven</p>
             </div>
             <div class="filtros-match-up">
-                <input type="text" id="ipt_campeao" placeholder="Pesquisar campeão...">
+                <!-- Pesquisa os campeões ao soltar uma tecla dentro do campo. -->
+                <input type="text" id="ipt_campeao" placeholder="Pesquisar campeão..." onkeyup="pesquisar_campeoes()">
                 <!-- Cada clique informa o tipo desejado e o próprio botão para destacar. -->
                 <button class="filtro filtro-ativo" onclick="filtrar_campeoes('Todos', this)">Todos</button>
                 <button class="filtro lutador" onclick="filtrar_campeoes('Lutador', this)">Lutadores</button>
@@ -137,8 +138,12 @@
                     painel_match.appendChild(card_campeao);
                 }
 
-                // Aplica aos novos cards o filtro escolhido durante o carregamento.
-                filtrar_campeoes(tipo_filtro_selecionado, document.querySelector(".filtro-ativo"));
+                // Aplica a pesquisa ou a categoria escolhida enquanto os cards carregavam.
+                if (ipt_campeao.value != "") {
+                    pesquisar_campeoes();
+                } else {
+                    filtrar_campeoes(tipo_filtro_selecionado, document.querySelector(".filtro-ativo"));
+                }
             }
         }).catch(function (erro) {
             // catch recebe falhas de conexão, erros HTTP lançados e falhas ao ler o JSON.
@@ -148,6 +153,9 @@
     }
 
     function filtrar_campeoes(tipo, botao) {
+        // Limpa a pesquisa para que o clique mostre somente o resultado da categoria.
+        ipt_campeao.value = "";
+
         // Guarda a escolha e pega todos os cards que já foram criados na tela.
         tipo_filtro_selecionado = tipo;
         let cards_campeao = document.querySelectorAll(".card_campeao");
@@ -167,6 +175,27 @@
             botoes_filtro[i].classList.remove("filtro-ativo");
         }
         botao.classList.add("filtro-ativo");
+    }
+
+    function pesquisar_campeoes() {
+        // Guarda o texto antes de ativar Todos, pois o filtro limpa o campo.
+        let texto_pesquisa = ipt_campeao.value;
+        filtrar_campeoes("Todos", document.querySelector(".filtro"));
+        ipt_campeao.value = texto_pesquisa;
+
+        // Compara tudo em minúsculas sem mudar o texto que o usuário digitou.
+        let pesquisa = texto_pesquisa.toLowerCase();
+        let cards_campeao = document.querySelectorAll(".card_campeao");
+
+        // Mostra somente os nomes que contêm o trecho pesquisado, independentemente do tipo.
+        for (let i = 0; i < cards_campeao.length; i++) {
+            let nome_campeao = cards_campeao[i].querySelector("span").textContent.toLowerCase();
+            if (nome_campeao.includes(pesquisa)) {
+                cards_campeao[i].style.display = "flex";
+            } else {
+                cards_campeao[i].style.display = "none";
+            }
+        }
     }
 
     function selecionar_campeao(card_campeao) {
