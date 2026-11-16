@@ -37,9 +37,20 @@ function remover_curtida(id_usuario, id_campeao) {
     return database.executar(instrucao);
 }
 
+function listar_curtidas(id_usuario) {
+    // Busca todos os campeões curtidos somente por este usuário.
+    var instrucao = `
+        SELECT campeao_id FROM curtida_campeao
+        WHERE usuario_id = ${id_usuario};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     cadastrar_curtida,
     listar_campeao,
     consultar_curtida,
-    remover_curtida
+    remover_curtida,
+    listar_curtidas
 };

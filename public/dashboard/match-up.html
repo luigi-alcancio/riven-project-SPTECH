@@ -64,7 +64,7 @@
                 <button class="filtro lutador" onclick="filtrar_campeoes('Lutador', this)">Lutadores</button>
                 <button class="filtro tanque" onclick="filtrar_campeoes('Tanque', this)">Tanques</button>
                 <button class="filtro mago" onclick="filtrar_campeoes('Mago', this)">Magos</button>
-                <button class="filtro favoritos">Favoritos</button>
+                <button class="filtro favoritos" onclick="filtrar_campeoes('Favoritos', this)">Favoritos</button>
             </div>
             <div class="painel-match"></div>
             <div class="match-up-escolhida">
@@ -159,7 +159,7 @@
         tipo_filtro_selecionado = tipo;
         let cards_campeao = document.querySelectorAll(".card_campeao");
 
-        // Mostra todos ou somente os cards cujo tipo corresponde ao filtro escolhido.
+        // Mostra a categoria escolhida; em Favoritos, esconde os cards enquanto consulta o banco.
         for (let i = 0; i < cards_campeao.length; i++) {
             if (tipo == "Todos" || cards_campeao[i].dataset.tipo == tipo) {
                 cards_campeao[i].style.display = "flex";
@@ -174,6 +174,46 @@
             botoes_filtro[i].classList.remove("filtro-ativo");
         }
         botao.classList.add("filtro-ativo");
+
+        // O mesmo filtro será reaplicado após criar os cards, caso ainda estejam carregando.
+        if (tipo == "Favoritos") {
+            filtrar_favoritos();
+        }
+    }
+
+    function filtrar_favoritos() {
+        // Busca todas as curtidas do usuário logado em uma única requisição.
+        let id_usuario = Number(sessionStorage.ID_USUARIO);
+        fetch("/campeao/listar_curtidas?id_usuario=" + id_usuario).then(function (resposta) {
+            if (resposta.ok) {
+                return resposta.json();
+            } else {
+                throw new Error("Não foi possível consultar os favoritos.");
+            }
+        }).then(function (curtidas) {
+            // Mostra apenas os cards que estão na lista de curtidas.
+            let cards_campeao = document.querySelectorAll(".card_campeao");
+            for (let i = 0; i < cards_campeao.length; i++) {
+                let favorito = false;
+
+                // Procura o ID deste card entre os campeões curtidos pelo usuário.
+                for (let j = 0; j < curtidas.length; j++) {
+                    if (Number(cards_campeao[i].dataset.id) == Number(curtidas[j].campeao_id)) {
+                        favorito = true;
+                    }
+                }
+
+                // Sem curtidas, favorito continua false e todos os cards ficam escondidos.
+                if (favorito) {
+                    cards_campeao[i].style.display = "flex";
+                } else {
+                    cards_campeao[i].style.display = "none";
+                }
+            }
+        }).catch(function () {
+            // Avisa se a consulta não funcionar.
+            alert("Não foi possível consultar seus favoritos.");
+        });
     }
 
     function pesquisar_campeoes() {

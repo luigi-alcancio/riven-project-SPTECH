@@ -23,4 +23,9 @@ router.delete("/remover_curtida", function (req, res) {
     campeaoController.remover_curtida(req, res);
 });
 
+router.get("/listar_curtidas", function (req, res) {
+    // Lista as curtidas do usuário informado depois do ? na URL.
+    campeaoController.listar_curtidas(req, res);
+});
+
 module.exports = router;
