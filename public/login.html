@@ -54,7 +54,7 @@
                 <p class="form-rodape">Não tem login? <a href="cadastro.html" class="remove-sublinhado">Cadastre-se aqui</a></p>
                 <a href="index.html" class="link-voltar">← Voltar à pagina inicial</a>
 
-                <div id="mensagem_erro"></div>
+                <div id="mensagem_erro" class="mensagem_erro"></div>
                 
 
             </div>
@@ -122,8 +122,11 @@
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
 
+                    mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "./dashboard/home.html";
                     }, 2000); // apenas para exibir o loading
 
                 });

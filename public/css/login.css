@@ -276,3 +276,9 @@ transition: 0.3s;
 .link-voltar:hover{
   transform: translateX(-3px);
 }
+
+.mensagem_erro{
+  margin-top: 20px;
+  color: green;
+  text-align: center;
+}
