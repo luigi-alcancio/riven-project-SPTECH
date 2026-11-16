@@ -94,7 +94,7 @@
         painel_match.textContent = "Carregando campeões...";
 
         // fetch faz uma requisição GET. O primeiro then recebe a resposta da API.
-        fetch("/campeao/listar").then(function (resposta) {
+        fetch("/campeao/listar_campeao").then(function (resposta) {
             // ok indica sucesso HTTP. Um erro lançado aqui será tratado pelo catch abaixo.
             if (resposta.ok) {
                 // json transforma o JSON da resposta em dados que o JavaScript pode usar.
@@ -122,7 +122,6 @@
                     card_campeao.dataset.id = campeao.id;
                     // Guarda o tipo vindo do banco no atributo data-tipo para usar no filtro.
                     card_campeao.dataset.tipo = campeao.tipo;
-                    card_campeao.setAttribute("aria-pressed", "false");
                     imagem_campeao.src = campeao.loadingScreenIMG;
                     imagem_campeao.alt = campeao.nome;
                     nome_campeao.textContent = campeao.nome;
@@ -204,13 +203,11 @@
 
         for (let i = 0; i < cards_campeao.length; i++) {
             cards_campeao[i].classList.remove("card_campeao_selecionado");
-            cards_campeao[i].setAttribute("aria-pressed", "false");
         }
 
         // dataset devolve texto; Number converte o ID para um número.
         id_campeao_selecionado = Number(card_campeao.dataset.id);
         card_campeao.classList.add("card_campeao_selecionado");
-        card_campeao.setAttribute("aria-pressed", "true");
         document.getElementById("nome_match_up").textContent =
             "Riven vs " + card_campeao.querySelector("span").textContent;
 

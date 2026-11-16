@@ -115,6 +115,7 @@ A implementação deve respeitar a arquitetura existente e priorizar o reaprovei
 - Para esconder ou mostrar elementos, utilizar `style.display = "none"` e `style.display = "flex"`.
 - Para criar elementos novos, utilizar `createElement` e `appendChild`.
 - Para alterar estilos por meio de classes, utilizar `classList.add`, `classList.remove` e `classList.contains`.
+- Não adicionar atributos ARIA (`aria-*`) ao HTML nem código JavaScript para manipulá-los, conforme a preferência do desenvolvedor por código mais simples nesta etapa do aprendizado.
 
 ### Rotas da API
 

@@ -78,6 +78,53 @@
     color: white;
 }
 
+.linha_nome_campeao {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.botao_favoritar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    padding: 4px;
+    border: none;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #AFAFAF;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.icone_coracao {
+    width: 36px;
+    height: 36px;
+    fill: transparent;
+    stroke: #b31a45; /* Contorno de um SVG */
+    stroke-width: 1.5;
+    stroke-linejoin: round; /* Os cantaos ficam bordados */
+    transition: fill 0.3s;
+}
+
+
+.botao_favoritar:hover{
+    color: #b31a45;
+    transform: scale(1.03);
+}
+
+.botao_favoritar.match_up_favoritada {
+    color: #b31a45;
+}
+
+.botao_favoritar.match_up_favoritada .icone_coracao {
+    fill: #b31a45;
+}
+
+
 .subtitulo-superior{
     font-size: 16px;
     color: #AFAFAF;

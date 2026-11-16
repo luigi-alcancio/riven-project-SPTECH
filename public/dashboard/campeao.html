@@ -55,7 +55,16 @@
             <div class="conteudo-superior" id="conteudo_superior">
                 <div class="dicas-container">
                     <p class="subtitulo-superior">Riven vs</p>
-                    <h1 class="nome-champ" id="nome_campeao">Carregando...</h1>
+                    <div class="linha_nome_campeao">
+                        <h1 class="nome-champ" id="nome_campeao">Carregando...</h1>
+                        <button type="button" class="botao_favoritar" id="btn_favoritar" onclick="favoritar_match_up()" title="Favoritar match-up" disabled>
+                            <svg class="icone_coracao" viewBox="-1 -1 26 26" xmlns="http://www.w3.org/2000/svg">
+                                <g transform="translate(0 -1028.4)">
+                                    <path d="m7 1031.4c-1.5355 0-3.0784 0.5-4.25 1.7-2.3431 2.4-2.2788 6.1 0 8.5l9.25 9.8 9.25-9.8c2.279-2.4 2.343-6.1 0-8.5-2.343-2.3-6.157-2.3-8.5 0l-0.75 0.8-0.75-0.8c-1.172-1.2-2.7145-1.7-4.25-1.7z" />
+                                </g>
+                            </svg>
+                        </button>
+                    </div>
                     <p class="descricao-champ cor-destaque" id="descricao_campeao"></p>
                     <p class="cor-destaque subtitulo">Principais dicas</p>
                     <ul>
@@ -113,7 +122,7 @@
 
         if (id_campeao != null && Number(id_campeao) > 0) {
             // O primeiro then recebe a resposta HTTP da rota que já existe.
-            fetch("/campeao/listar").then(function (resposta) {
+            fetch("/campeao/listar_campeao").then(function (resposta) {
                 if (resposta.ok) {
                     // Retorna a leitura do JSON para o próximo then aguardar os dados.
                     return resposta.json();
@@ -166,8 +175,119 @@
             botoes_nivel[i].disabled = false;
         }
 
+        // Consulta o banco antes de liberar o coração, inclusive ao recarregar a página.
+        consultar_curtida();
+
         atualizar_dificuldade();
         mostrar_dica_nivel(1);
+    }
+
+    function consultar_curtida() {
+        // O login guarda o ID do usuário na sessão; o campeão já foi carregado nesta página.
+        let id_usuario = Number(sessionStorage.ID_USUARIO);
+        let botao_favoritar = document.getElementById("btn_favoritar");
+        botao_favoritar.disabled = true;
+
+        // Sem um usuário logado, não é possível consultar ou registrar sua curtida.
+        if (!Number.isInteger(id_usuario) || id_usuario <= 0) {
+            botao_favoritar.title = "Faça login para favoritar uma match-up";
+            return;
+        }
+
+        botao_favoritar.title = "Consultando favorito...";
+
+        // no-store pede uma resposta atual da API, em vez de reutilizar uma consulta em cache.
+        // Os IDs depois do ? são lidos pelo controller usando req.query.
+        fetch("/campeao/consultar_curtida?id_usuario=" + id_usuario + "&id_campeao=" + campeao_selecionado.id, {
+            cache: "no-store"
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                return resposta.json();
+            } else {
+                throw new Error("Não foi possível consultar a curtida.");
+            }
+        }).then(function (curtidas) {
+            // Um registro significa que este usuário já favoritou este campeão.
+            atualizar_coracao(curtidas.length > 0);
+            botao_favoritar.disabled = false;
+        }).catch(function (erro) {
+            // Mantém o botão bloqueado enquanto não sabemos o estado real no banco.
+            botao_favoritar.title = "Recarregue a página para consultar o favorito";
+            alert("Não foi possível consultar seu favorito. Tente recarregar a página.");
+            console.error("Erro ao consultar curtida:", erro);
+        });
+    }
+
+    function favoritar_match_up() {
+        let botao_favoritar = document.getElementById("btn_favoritar");
+        let id_usuario = Number(sessionStorage.ID_USUARIO);
+
+        // Não envia outra requisição durante o carregamento ou sem um campeão disponível.
+        if (campeao_selecionado == null || botao_favoritar.disabled) {
+            return;
+        }
+
+        if (!Number.isInteger(id_usuario) || id_usuario <= 0) {
+            alert("Faça login para favoritar uma match-up.");
+            return;
+        }
+
+        // A classe informa o último estado confirmado pelo banco.
+        let estava_favoritada = botao_favoritar.classList.contains("match_up_favoritada");
+        let rota_curtida;
+        let configuracao_requisicao;
+
+        if (estava_favoritada) {
+            // DELETE envia os IDs no corpo em JSON, que o controller lê com req.body.
+            rota_curtida = "/campeao/remover_curtida";
+            configuracao_requisicao = {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    id_usuario: id_usuario,
+                    id_campeao: campeao_selecionado.id
+                })
+            };
+        } else {
+            // POST reutiliza o cadastro existente e envia os IDs no corpo em JSON.
+            rota_curtida = "/campeao/cadastrar_curtida";
+            configuracao_requisicao = {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    id_usuario: id_usuario,
+                    id_campeao: campeao_selecionado.id
+                })
+            };
+        }
+
+        // Bloqueia cliques repetidos e só altera o coração depois da confirmação da API.
+        botao_favoritar.disabled = true;
+        fetch(rota_curtida, configuracao_requisicao).then(function (resposta) {
+            if (resposta.ok) {
+                atualizar_coracao(!estava_favoritada);
+                botao_favoritar.disabled = false;
+            } else {
+                throw new Error("Não foi possível atualizar a curtida.");
+            }
+        }).catch(function (erro) {
+            // Em caso de falha, preserva o último estado confirmado e permite tentar novamente.
+            botao_favoritar.disabled = false;
+            alert("Não foi possível atualizar seu favorito. Tente novamente.");
+            console.error("Erro ao atualizar curtida:", erro);
+        });
+    }
+
+    function atualizar_coracao(favoritada) {
+        // Usa o mesmo CSS e a mesma transição para mostrar o estado confirmado da curtida.
+        let botao_favoritar = document.getElementById("btn_favoritar");
+        if (favoritada) {
+            botao_favoritar.classList.add("match_up_favoritada");
+            botao_favoritar.title = "Remover match-up dos favoritos";
+        } else {
+            botao_favoritar.classList.remove("match_up_favoritada");
+            botao_favoritar.title = "Favoritar match-up";
+        }
     }
 
     function atualizar_dificuldade() {
