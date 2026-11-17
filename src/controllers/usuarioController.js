@@ -16,10 +16,12 @@ function autenticar(req, res) {
                 console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
 
                 if (resultadoAutenticar.length == 1) {
+                    // Envia os dados do usuário, incluindo o rank, para o login.
                     res.json({
                         id: resultadoAutenticar[0].id,
                         email: resultadoAutenticar[0].email,
-                        nome: resultadoAutenticar[0].nome
+                        nome: resultadoAutenticar[0].nome,
+                        lol_rank: resultadoAutenticar[0].lol_rank
                     });
                 } else if (resultadoAutenticar.length == 0) {
                     res.status(403).send("Email e/ou senha inválido(s)");

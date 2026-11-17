@@ -69,9 +69,9 @@
 
                         <p>Rank atual</p>
 
-                        <img src="../assets/imgs/rank-chall.png" alt="img-chall">
+                        <img id="img_rank_usuario" src="../assets/imgs/rank-unranked.webp" alt="Rank Unranked">
 
-                        <h2>CHALLENGER</h2>
+                        <h2 id="nome_rank_usuario">UNRANKED</h2>
 
                     </div>
                     <div class="coluna">
@@ -162,8 +162,43 @@
     document.getElementById("nome_usuario_header").textContent = "Olá, " + sessionStorage.NOME_USUARIO;
     document.getElementById("nome_usuario_home").textContent = "Seja bem vindo, " + sessionStorage.NOME_USUARIO;
 
+    // Preenche o rank atual com a informação guardada no login.
+    mostrar_rank_usuario();
+
     // Preenche os três espaços com os favoritos do usuário ao abrir a Home.
     carregar_favoritos_home();
+
+    function mostrar_rank_usuario() {
+        // Lê o rank e preenche o nome em maiúsculas, mantendo o visual do card.
+        let rank_usuario = sessionStorage.RANK_USUARIO;
+        let imagem_rank = document.getElementById("img_rank_usuario");
+        document.getElementById("nome_rank_usuario").textContent = rank_usuario.toUpperCase();
+
+        // Cada rank escolhe a imagem correspondente na pasta de imagens.
+        if (rank_usuario == "Unranked") {
+            imagem_rank.src = "../assets/imgs/rank-unranked.webp";
+        } else if (rank_usuario == "Ferro") {
+            imagem_rank.src = "../assets/imgs/rank-ferro.png";
+        } else if (rank_usuario == "Bronze") {
+            imagem_rank.src = "../assets/imgs/rank-bronze.png";
+        } else if (rank_usuario == "Prata") {
+            imagem_rank.src = "../assets/imgs/rank-prata.png";
+        } else if (rank_usuario == "Ouro") {
+            imagem_rank.src = "../assets/imgs/rank-gold.png";
+        } else if (rank_usuario == "Platina") {
+            imagem_rank.src = "../assets/imgs/rank-platina.png";
+        } else if (rank_usuario == "Esmeralda") {
+            imagem_rank.src = "../assets/imgs/rank-esmeralda.png";
+        } else if (rank_usuario == "Diamante") {
+            imagem_rank.src = "../assets/imgs/rank-diamante.png";
+        } else if (rank_usuario == "Mestre") {
+            imagem_rank.src = "../assets/imgs/rank-mestre.png";
+        } else if (rank_usuario == "Grão-Mestre") {
+            imagem_rank.src = "../assets/imgs/rank-graomestre.png";
+        } else if (rank_usuario == "Challenger") {
+            imagem_rank.src = "../assets/imgs/rank-challenger.png";
+        }
+    }
 
     function carregar_favoritos_home() {
         let id_usuario = Number(sessionStorage.ID_USUARIO);
