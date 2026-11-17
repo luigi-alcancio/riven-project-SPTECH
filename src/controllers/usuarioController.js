@@ -72,7 +72,45 @@ function cadastrar(req, res) {
     }
 }
 
+function atualizar_rank(req, res) {
+    // Lê os dados enviados pela Home no corpo da requisição.
+    var id_usuario = Number(req.body.id_usuario);
+    var rank_usuario = req.body.rank_usuario;
+
+    // Verifica se os campos necessários foram informados.
+    if (!id_usuario || !rank_usuario) {
+        res.status(400).send("Informe o usuário e o rank.");
+        return;
+    }
+
+    // Aceita somente os ranks presentes no select e na tabela usuario.
+    var ranks_permitidos = ["Unranked", "Ferro", "Bronze", "Prata", "Ouro", "Platina",
+        "Esmeralda", "Diamante", "Mestre", "Grão-Mestre", "Challenger"];
+    var rank_valido = false;
+    for (var i = 0; i < ranks_permitidos.length; i++) {
+        if (rank_usuario == ranks_permitidos[i]) {
+            rank_valido = true;
+        }
+    }
+    if (!rank_valido) {
+        res.status(400).send("Escolha um rank válido.");
+        return;
+    }
+
+    // Confirma o sucesso depois que o model executar a atualização no banco.
+    usuarioModel.atualizar_rank(id_usuario, rank_usuario).then(function (resultado) {
+        if (resultado.affectedRows == 0) {
+            res.status(404).send("Usuário não encontrado.");
+        } else {
+            res.status(200).send("Rank atualizado com sucesso.");
+        }
+    }).catch(function () {
+        res.status(500).send("Não foi possível atualizar o rank.");
+    });
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    atualizar_rank
 }

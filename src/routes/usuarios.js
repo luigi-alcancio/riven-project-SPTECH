@@ -12,4 +12,9 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+router.put("/atualizar_rank", function (req, res) {
+    // Encaminha o ID e o novo rank recebidos da Home para o controller.
+    usuarioController.atualizar_rank(req, res);
+});
+
 module.exports = router;

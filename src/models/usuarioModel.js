@@ -23,7 +23,17 @@ function cadastrar(nome, email, senha) {
     return database.executar(instrucaoSql);
 }
 
+function atualizar_rank(id_usuario, rank_usuario) {
+    // Atualiza somente o rank do usuário indicado pelo ID.
+    var instrucaoSql = `
+        UPDATE usuario SET lol_rank = '${rank_usuario}' WHERE id = ${id_usuario};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    atualizar_rank
 };

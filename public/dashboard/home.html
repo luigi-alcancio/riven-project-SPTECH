@@ -63,15 +63,38 @@
 
                     <div class="card-rank">
 
-                        <a href="vou colocar link de editar perfil aqui" class="btn-editar-rank">
+                        <!-- Abre a caixa simples de edição do rank. -->
+                        <button type="button" class="btn-editar-rank" onclick="abrir_edicao_rank()" title="Editar rank">
                             <img src="../assets/icon/icon-editar.svg" alt="">
-                        </a>
+                        </button>
 
                         <p>Rank atual</p>
 
                         <img id="img_rank_usuario" src="../assets/imgs/rank-unranked.webp" alt="Rank Unranked">
 
                         <h2 id="nome_rank_usuario">UNRANKED</h2>
+
+                        <!-- Fica escondida até o usuário clicar no botão de editar. -->
+                        <div class="edicao_rank" id="div_editar_rank">
+                            <label for="sel_rank_usuario">Escolha seu rank</label>
+                            <select id="sel_rank_usuario">
+                                <option value="Unranked">Unranked</option>
+                                <option value="Ferro">Ferro</option>
+                                <option value="Bronze">Bronze</option>
+                                <option value="Prata">Prata</option>
+                                <option value="Ouro">Ouro</option>
+                                <option value="Platina">Platina</option>
+                                <option value="Esmeralda">Esmeralda</option>
+                                <option value="Diamante">Diamante</option>
+                                <option value="Mestre">Mestre</option>
+                                <option value="Grão-Mestre">Grão-Mestre</option>
+                                <option value="Challenger">Challenger</option>
+                            </select>
+                            <div class="botoes_edicao_rank">
+                                <button type="button" id="btn_salvar_rank" onclick="salvar_rank_usuario()">Salvar</button>
+                                <button type="button" onclick="fechar_edicao_rank()">Cancelar</button>
+                            </div>
+                        </div>
 
                     </div>
                     <div class="coluna">
@@ -90,7 +113,8 @@
                                 </div>
                             </div>
 
-                            <button>Jogar de novo</button>
+                            <!-- Abre diretamente a página do quiz. -->
+                            <button type="button" onclick="window.location.href = 'quiz.html'">Jogar de novo</button>
 
                         </div>
                         <div class="card-match-ups">
@@ -167,6 +191,48 @@
 
     // Preenche os três espaços com os favoritos do usuário ao abrir a Home.
     carregar_favoritos_home();
+
+    function abrir_edicao_rank() {
+        // Seleciona o rank atual e mostra a caixa de edição.
+        document.getElementById("sel_rank_usuario").value = sessionStorage.RANK_USUARIO;
+        document.getElementById("div_editar_rank").style.display = "flex";
+    }
+
+    function fechar_edicao_rank() {
+        // Esconde a caixa sem alterar o rank.
+        document.getElementById("div_editar_rank").style.display = "none";
+    }
+
+    function salvar_rank_usuario() {
+        // Lê a escolha do select e bloqueia o botão enquanto envia ao servidor.
+        let rank_usuario = document.getElementById("sel_rank_usuario").value;
+        let botao_salvar = document.getElementById("btn_salvar_rank");
+        botao_salvar.disabled = true;
+
+        // Envia o ID e o novo rank em JSON para a rota de atualização.
+        fetch("/usuarios/atualizar_rank", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                id_usuario: Number(sessionStorage.ID_USUARIO),
+                rank_usuario: rank_usuario
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                // Atualiza a sessão e o card somente após a confirmação do banco.
+                sessionStorage.RANK_USUARIO = rank_usuario;
+                mostrar_rank_usuario();
+                fechar_edicao_rank();
+            } else {
+                alert("Não foi possível atualizar seu rank.");
+            }
+            botao_salvar.disabled = false;
+        }).catch(function () {
+            // Libera o botão e avisa se a requisição falhar.
+            botao_salvar.disabled = false;
+            alert("Não foi possível atualizar seu rank.");
+        });
+    }
 
     function mostrar_rank_usuario() {
         // Lê o rank e preenche o nome em maiúsculas, mantendo o visual do card.

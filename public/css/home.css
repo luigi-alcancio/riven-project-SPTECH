@@ -175,6 +175,47 @@
     transform: scale(1.05);
 }
 
+/* A caixa ocupa a parte inferior do card e começa escondida. */
+.edicao_rank {
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    position: absolute;
+    bottom: 20px;
+    left: 16px;
+    right: 16px;
+    background-color: #111111;
+    border: solid 2px #3C3C3C;
+    border-radius: 12px;
+    padding: 16px;
+    color: #D9C7A0;
+}
+
+.edicao_rank select {
+    width: 100%;
+    padding: 10px;
+    background-color: #212121;
+    border: solid 1px #3C3C3C;
+    border-radius: 8px;
+    color: #d8d8d8;
+}
+
+/* Organiza Salvar e Cancelar lado a lado. */
+.botoes_edicao_rank {
+    display: flex;
+    gap: 8px;
+}
+
+.botoes_edicao_rank button {
+    flex: 1;
+    padding: 10px;
+    background-color: #3a1620;
+    border: solid 1px #3C3C3C;
+    border-radius: 8px;
+    color: #d8d8d8;
+    cursor: pointer;
+}
+
 .card-rank p{
     color: #d8d8d8;
     font-size: 32px;
