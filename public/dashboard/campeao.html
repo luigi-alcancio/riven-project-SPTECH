@@ -23,7 +23,7 @@
             <img src="../assets/icon/riven_icon_1.png" alt="SwordRiven">
         </a>
         <div class="area-usuario">
-            <span>Olá, Usuário</span>
+            <span id="nome_usuario_header">Olá, Usuário</span>
             <img class="avatar-riven" src="../assets/imgs/avatar_riven.png" alt="Avatar">
         </div>
     </div>
@@ -110,6 +110,9 @@
 
 </html>
 <script>
+    // Preenche o cabeçalho com o nome guardado no login.
+    document.getElementById("nome_usuario_header").textContent = "Olá, " + sessionStorage.NOME_USUARIO;
+
     // Guarda o registro completo encontrado no JSON para usar também nos botões de nível.
     let campeao_selecionado = null;
 
