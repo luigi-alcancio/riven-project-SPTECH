@@ -66,7 +66,7 @@
                     <div class="chips">
                         <span class="chip">
                             <img src="../assets/icon/list-numbers.svg">
-                            3 questões</span>
+                            <span id="quantidade_questoes_inicio"></span> questões</span>
                         <span class="chip">
                             <img src="../assets/icon/checks.svg">
                             4 alternativas</span>
@@ -156,36 +156,129 @@
     // Preenche o cabeçalho com o nome guardado no login.
     document.getElementById("nome_usuario_header").textContent = "Olá, " + sessionStorage.NOME_USUARIO;
 
+    // Edite este array para mudar as perguntas; cada objeto contém quatro alternativas e a correta.
     const listaDeQuestoes = [
-
         {
-            pergunta: "Qual mês tem 30 dias?",
-            alternativaA: "Janeiro",
-            alternativaB: "Dezembro",
-            alternativaC: "Junho",
-            alternativaD: "Agosto",
+            pergunta: "Como aproveitar a passiva da Riven durante um combo?",
+            alternativaA: "Usando apenas ataques básicos, sem habilidades",
+            alternativaB: "Intercalando ataques básicos entre as habilidades",
+            alternativaC: "Usando todas as habilidades sem atacar",
+            alternativaD: "Atacando somente depois que a passiva acabar",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            pergunta: "Qual efeito de controle o terceiro Q da Riven aplica aos inimigos atingidos?",
+            alternativaA: "Silenciamento",
+            alternativaB: "Enraizamento",
+            alternativaC: "Arremesso ao ar",
+            alternativaD: "Encantamento",
             alternativaCorreta: "alternativaC"
         },
-
         {
-            pergunta: "Quantas horas tem em um dia?",
-            alternativaA: "30 horas",
-            alternativaB: "38 horas",
-            alternativaC: "48 horas",
-            alternativaD: "24 horas",
+            pergunta: "Qual habilidade da Riven concede um escudo e um avanço curto?",
+            alternativaA: "E — Valentia",
+            alternativaB: "W — Explosão de Ki",
+            alternativaC: "R — Lâmina do Exilado",
+            alternativaD: "Passiva — Lâmina Rúnica",
+            alternativaCorreta: "alternativaA"
+        },
+        {
+            pergunta: "Contra Aatrox, para que você pode guardar o E da Riven?",
+            alternativaA: "Para recuperar mana",
+            alternativaB: "Para impedir que ele use a ultimate",
+            alternativaC: "Para destruir a arma dele",
+            alternativaD: "Para desviar da área de impacto do terceiro Q",
             alternativaCorreta: "alternativaD"
         },
-
         {
-            pergunta: "Qual destes números é ímpar?",
-            alternativaA: "Dez",
-            alternativaB: "Doze",
-            alternativaC: "Oito",
-            alternativaD: "Onze",
+            pergunta: "Contra Fiora, qual cuidado tomar ao usar o W ou o terceiro Q da Riven?",
+            alternativaA: "Usar sempre enquanto a Ripostar estiver ativa",
+            alternativaB: "Evitar que ela bloqueie o controle com a Ripostar",
+            alternativaC: "Usar apenas contra os minions",
+            alternativaD: "Esperar a Fiora chegar ao nível 18",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            pergunta: "Contra Darius, qual é o risco de prolongar uma troca e deixar a passiva dele acumular?",
+            alternativaA: "Ele perde acesso à ultimate",
+            alternativaB: "Ele deixa de causar dano físico",
+            alternativaC: "Ele fica mais perigoso ao atingir cinco acúmulos de Hemorragia",
+            alternativaD: "A Riven recebe um escudo permanente",
+            alternativaCorreta: "alternativaC"
+        },
+        {
+            pergunta: "Qual parte do Q do Darius você deve evitar para negar a cura dessa habilidade em campeões?",
+            alternativaA: "A lâmina na borda externa do golpe",
+            alternativaB: "O cabo na parte interna do golpe",
+            alternativaC: "A área atrás da Riven, fora do alcance",
+            alternativaD: "O centro do mapa",
+            alternativaCorreta: "alternativaA"
+        },
+        {
+            pergunta: "Contra Renekton, qual sinal exige cuidado antes de entrar em uma troca?",
+            alternativaA: "Ele estar sem habilidades e sem fúria",
+            alternativaB: "Ele estar voltando para a base",
+            alternativaC: "Ele estar longe da wave",
+            alternativaD: "Ele ter fúria suficiente para usar o W fortalecido",
             alternativaCorreta: "alternativaD"
+        },
+        {
+            pergunta: "Contra Jax, o que o Contra-Ataque (E) faz durante sua preparação?",
+            alternativaA: "Impede Jax de se mover",
+            alternativaB: "Permite que ele esquive de ataques básicos",
+            alternativaC: "Remove todas as habilidades da Riven",
+            alternativaD: "Cura a Riven a cada ataque",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            pergunta: "Por que o W da Poppy exige cuidado ao usar os avanços da Riven?",
+            alternativaA: "Porque aumenta o alcance dos ataques da Riven",
+            alternativaB: "Porque concede mana à Riven",
+            alternativaC: "Porque pode interromper avanços dentro da área ativa",
+            alternativaD: "Porque destrói automaticamente a torre aliada",
+            alternativaCorreta: "alternativaC"
+        },
+        {
+            pergunta: "Contra Irelia, qual situação costuma tornar uma troca mais perigosa?",
+            alternativaA: "Ela estar com a passiva totalmente acumulada",
+            alternativaB: "Ela estar sem vida e sem habilidades",
+            alternativaC: "Ela estar longe e voltando para a base",
+            alternativaD: "Ela não ter minions próximos nem acúmulos da passiva",
+            alternativaCorreta: "alternativaA"
+        },
+        {
+            pergunta: "Contra Sett, como reduzir o dano verdadeiro do W dele?",
+            alternativaA: "Ficar parado no centro do golpe",
+            alternativaB: "Atacar o escudo sem sair da área central",
+            alternativaC: "Usar o W da Riven depois de receber o dano",
+            alternativaD: "Sair da faixa central antes de o golpe acertar",
+            alternativaCorreta: "alternativaD"
+        },
+        {
+            pergunta: "Quando o adversário está com Osso Revestido disponível, qual preparação ajuda antes do combo completo?",
+            alternativaA: "Usar todo o combo imediatamente, sem observar a runa",
+            alternativaB: "Ativar a runa com uma troca curta e esperar seu efeito acabar",
+            alternativaC: "Parar de farmar pelo restante da partida",
+            alternativaD: "Esperar a runa aumentar o dano da Riven",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            pergunta: "Por que trocar dentro de uma wave inimiga grande pode ser ruim nos primeiros níveis?",
+            alternativaA: "Os minions impedem a Riven de usar qualquer habilidade",
+            alternativaB: "A Riven perde sua passiva permanentemente",
+            alternativaC: "O dano dos minions pode fazer você perder a troca",
+            alternativaD: "A torre aliada passa a atacar a Riven",
+            alternativaCorreta: "alternativaC"
+        },
+        {
+            pergunta: "Como a vida do alvo influencia o dano do Corte de Vento, a segunda ativação do R da Riven?",
+            alternativaA: "O dano aumenta conforme a vida perdida do alvo, até o limite da habilidade",
+            alternativaB: "O golpe só causa dano em alvos com vida cheia",
+            alternativaC: "O dano depende apenas da mana do alvo",
+            alternativaD: "O golpe cura alvos com pouca vida",
+            alternativaCorreta: "alternativaA"
         }
-
-    ]
+    ];
 
     // variáveis globais    
     let numeroDaQuestaoAtual = 0
@@ -194,7 +287,9 @@
     let certas = 0
     let erradas = 0
     let quantidadeDeQuestoes = listaDeQuestoes.length
-    // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
+
+    // Atualiza apenas o texto da apresentação com a quantidade de perguntas do array.
+    document.getElementById('quantidade_questoes_inicio').textContent = quantidadeDeQuestoes
 
     function onloadEsconder() {
         document.getElementById('pontuacao').style.display = "none"
@@ -344,15 +439,15 @@
         const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
 
         if (porcentagemFinalDeAcertos <= 0.3) {
-            textoParaMensagemFinal = "Parece que você não estudou..."
+            textoParaMensagemFinal = "Talvez seja bom estudar as match-ups..."
             classComCoresParaMensagemFinal = "text-danger-with-bg"
         }
         else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
-            textoParaMensagemFinal = "Pode melhorar na próxima, hein!"
+            textoParaMensagemFinal = "Você foi até que bem, mas sempre tem espaço para melhorar ne..."
             classComCoresParaMensagemFinal = "text-warning-with-bg"
         }
         else if (porcentagemFinalDeAcertos >= 0.9) {
-            textoParaMensagemFinal = "Uau, parabéns!"
+            textoParaMensagemFinal = "Parabéns, você parece ser um bom duelista!!"
             classComCoresParaMensagemFinal = "text-success-with-bg"
         }
 
@@ -369,5 +464,28 @@
         btnProx.disabled = true
         btnTentarNovamente.disabled = false
 
+        // Salva os acertos já calculados pela lógica original do quiz.
+        salvar_tentativa()
+
+    }
+
+    function salvar_tentativa() {
+        // fetch envia o ID do login e os acertos em JSON para a API.
+        fetch('/quiz/cadastrar_tentativa', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                usuario_id: Number(sessionStorage.ID_USUARIO),
+                pontuacao: pontuacaoFinal
+            })
+        }).then(function (resposta) {
+            // Avisa caso o servidor não consiga gravar a tentativa.
+            if (!resposta.ok) {
+                alert("Não foi possível salvar sua tentativa.")
+            }
+        }).catch(function () {
+            // Avisa se a requisição falhar por um problema de conexão.
+            alert("Falha na conexão ao salvar sua tentativa.")
+        })
     }
 </script>

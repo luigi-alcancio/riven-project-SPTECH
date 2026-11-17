@@ -107,7 +107,7 @@
 
                             <div class="info-card-quiz">
                                 <p>Seu recorde no quiz</p>
-                                <span>8/15</span>
+                                <span id="pontuacao_quiz_usuario">Carregando...</span>
                                 <div class="barra">
                                     <div class="barra-preenchimento" id="barra-preenchimento"></div>
                                 </div>
@@ -182,29 +182,57 @@
 
 </html>
 <script>
-    // Preenche o cabeçalho e as boas-vindas com o nome guardado no login.
     document.getElementById("nome_usuario_header").textContent = "Olá, " + sessionStorage.NOME_USUARIO;
     document.getElementById("nome_usuario_home").textContent = "Seja bem vindo, " + sessionStorage.NOME_USUARIO;
 
-    // Preenche o rank atual com a informação guardada no login.
     mostrar_rank_usuario();
 
-    // Preenche os três espaços com os favoritos do usuário ao abrir a Home.
     carregar_favoritos_home();
 
+    carregar_recorde_quiz();
+
+    function carregar_recorde_quiz() {
+        let usuario_id = Number(sessionStorage.ID_USUARIO);
+        let texto_pontuacao = document.getElementById("pontuacao_quiz_usuario");
+        let barra_pontuacao = document.getElementById("barra-preenchimento");
+
+        // Envia o ID na URL; a API busca somente as tentativas deste usuário.
+        fetch("/quiz/consultar_recorde?usuario_id=" + usuario_id).then(function (resposta) {
+            if (resposta.ok) {
+                return resposta.json();
+            } else {
+                throw new Error("Não foi possível consultar seu recorde.");
+            }
+        }).then(function (recorde) {
+            // Sem tentativas (null) ou sem acertos (0), a pontuação exibida é zero.
+            let pontuacao = 0;
+            if (recorde.pontuacao != null && recorde.pontuacao != 0) {
+                pontuacao = Number(recorde.pontuacao);
+            }
+
+            // Preenche o texto e a barra com o recorde encontrado.
+            texto_pontuacao.textContent = pontuacao + "/15";
+            barra_pontuacao.style.width = (pontuacao / 15 * 100) + "%";
+        }).catch(function () {
+            // Uma falha de consulta não é apresentada como se o recorde fosse zero.
+            texto_pontuacao.textContent = "Indisponível";
+            barra_pontuacao.style.width = "0%";
+        });
+    }
+
     function abrir_edicao_rank() {
-        // Seleciona o rank atual e mostra a caixa de edição.
+
         document.getElementById("sel_rank_usuario").value = sessionStorage.RANK_USUARIO;
         document.getElementById("div_editar_rank").style.display = "flex";
     }
 
     function fechar_edicao_rank() {
-        // Esconde a caixa sem alterar o rank.
+
         document.getElementById("div_editar_rank").style.display = "none";
     }
 
     function salvar_rank_usuario() {
-        // Lê a escolha do select e bloqueia o botão enquanto envia ao servidor.
+        
         let rank_usuario = document.getElementById("sel_rank_usuario").value;
         let botao_salvar = document.getElementById("btn_salvar_rank");
         botao_salvar.disabled = true;
