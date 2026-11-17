@@ -15,10 +15,11 @@ var HOST_APP = process.env.APP_HOST;
 
 var app = express();
 
-
+// Importa as rotas de consulta
 var usuarioRouter = require("./src/routes/usuarios");
 var campeaoRouter = require("./src/routes/campeao");
 var quiz_router = require("./src/routes/quiz");
+var rank_router = require("./src/routes/rank");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -26,9 +27,12 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(cors());
 
+// Encaminha as requisições que começam com "/alguma coisa" para o arquivo de rotas.
+
 app.use("/usuarios", usuarioRouter);
 app.use("/campeao", campeaoRouter);
 app.use("/quiz", quiz_router);
+app.use("/rank", rank_router);
 
 app.listen(PORTA_APP, function () {
     console.log(`
