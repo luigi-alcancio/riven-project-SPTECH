@@ -264,15 +264,16 @@
     font-weight: bold;
 }
 
-.titulos-caixa-match span{
+.titulos-caixa-match a{
     color: #D9C7A0;
     font-size: 24px;
     font-weight: bold;
     cursor: pointer;
     transition: 0.2s;
+    text-decoration: none;
 }
 
-.titulos-caixa-match span:hover{
+.titulos-caixa-match a:hover{
     transform: translateX(3px);
     
 }
@@ -283,6 +284,12 @@
     flex-direction: row;
     justify-content: space-around;
     gap: 30px;
+}
+
+/* Os cards são links, mas mantêm a aparência dos cards originais. */
+.caixa-card-match a{
+    text-decoration: none;
+    min-width: 0;
 }
 
 .card-unknown{
@@ -305,17 +312,17 @@
 
 .card-unknown:hover{
     border: solid 2px #3a1620;
-    transform: scale(1.03);
+    transform: scale(1.02);
     cursor: pointer;
 
 }
 
-.card-aatrox{
+/* A mesma classe atende qualquer campeão; o JavaScript define a imagem. */
+.card_favorito{
     border-radius: 10px;
     border: solid 2px #3C3C3C;
     flex: 1;
 
-    background-image: url(../assets/imgs/card-aatrox.webp);
     background-size: 110%;
     background-position: 30% 15%;
     filter: saturate(0.6);
@@ -327,15 +334,15 @@
     transition: 0.3s;
 }
 
-.card-aatrox:hover{
+.card_favorito:hover{
     border: solid 2px #3a1620;
-    transform: scale(1.03);
+    transform: scale(1.01);
     filter: saturate(0.8);
     cursor: pointer;
 }
 
 
-.card-aatrox span{
+.card_favorito span{
     color: #AFAFAF;
     font-weight: bold;
     font-size: 28px;
@@ -349,57 +356,7 @@
 
 }
 
-.card-aatrox span::after{
-    content: '';
-    background: url(../assets/icon/like-card.svg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin-left: 8px;
-    right: 0;
-    width: 22px;
-    height: 26px;
-}
-
-.card-fiora{
-    border-radius: 10px;
-    border: solid 2px #3C3C3C;
-    flex: 1;
-
-    background-image: url(../assets/imgs/card-fiora.jpg);
-    background-size: 110%;
-    background-position: 30% 15%;
-    filter: saturate(0.6);
-
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-
-    transition: 0.3s;
-}
-
-.card-fiora:hover{
-    transform: scale(1.03);
-    filter: saturate(0.8);
-    cursor: pointer;
-    border: solid 2px #3a1620;
-}
-
-
-.card-fiora span{
-    color: #AFAFAF;
-    font-weight: bold;
-    font-size: 28px;
-    min-height: 50px;
-    flex: 1;
-    background-color: #212121;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.card-fiora span::after{
+.card_favorito span::after{
     content: '';
     background: url(../assets/icon/like-card.svg);
     background-repeat: no-repeat;

@@ -86,6 +86,16 @@
     // Mantém o filtro escolhido mesmo se os campeões ainda estiverem carregando.
     let tipo_filtro_selecionado = "Todos";
 
+    // Recupera a escolha de Ver todas e destaca Favoritos antes de carregar os cards.
+    if (sessionStorage.getItem("filtro_match_up") == "Favoritos") {
+        tipo_filtro_selecionado = "Favoritos";
+        document.querySelector(".filtro-ativo").classList.remove("filtro-ativo");
+        document.querySelector(".favoritos").classList.add("filtro-ativo");
+    }
+
+    // Apaga a escolha para as próximas visitas abrirem normalmente em Todos.
+    sessionStorage.removeItem("filtro_match_up");
+
     // Busca os campeões assim que o navegador chega a este script, após o HTML da tela.
     carregar_campeoes();
 
