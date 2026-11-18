@@ -18,13 +18,16 @@
 .conteudo-superior::before {
     content: '';
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 35%;
+    right: 0;
+    bottom: 0;
     z-index: -1;
 
     /* O JavaScript define a imagem do campeão; antes da consulta, fica sem imagem. */
     background: var(--imagem_campeao, none) no-repeat;
-    background-size: 85%;
-    background-position: 100% 0%;
+    background-size: 100%;
+    background-position: center 15%;
     filter: saturate(0.6) opacity(0.8);
 }
 
