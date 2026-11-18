@@ -199,6 +199,15 @@
     transition: 0.3s;
 }
 
+.linha .imagem_top_matchup {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 20%;
+    flex-shrink: 0;
+}
+
 .linha img:hover{
     transform: scale(1.03);
 }

@@ -63,15 +63,18 @@
             <div class="linha-kpi">
                 <div class="kpi">
                     <p>Elo com mais jogadores cadastrados</p>
-                    <h2>Ouro</h2>
+                    <!-- O JavaScript preenche esta KPI com o elo mais cadastrado. -->
+                    <h2 id="kpi_elo_mais_jogadores">Carregando...</h2>
                 </div>
                 <div class="kpi">
                     <p>Média de acertos no quiz</p>
-                    <h2>6,5/15</h2>
+                    <!-- A média geral vem da consulta de todas as tentativas. -->
+                    <h2 id="kpi_media_quiz">Carregando...</h2>
                 </div>
                 <div class="kpi">
                     <p>Tentativas no quiz</p>
-                    <h2>128</h2>
+                    <!-- A API retorna o total de tentativas registradas. -->
+                    <h2 id="kpi_tentativas_quiz">Carregando...</h2>
                 </div>
             </div>
             <div class="linha-gráficos">
@@ -96,48 +99,50 @@
 
                 <div class="tabela">
                     <h2>Top 3 ranking do quiz</h2>
-                    <div class="lista">
-                        <div class="linha">
+                    <!-- As linhas aparecem quando a consulta preenche os dados dos jogadores. -->
+                    <div class="lista" id="lista_top_quiz">
+                        <div class="linha" style="display: none;">
                             <span class="rank-1">1</span>
                             <img src="../assets/imgs/icon-riven-dawnbringer-mythic.jpg">
-                            <span>Jogador 01</span>
-                            <span>10/15</span>
+                            <span class="nome_top_quiz"></span>
+                            <span class="pontuacao_top_quiz"></span>
                         </div>
-                        <div class="linha">
+                        <div class="linha" style="display: none;">
                             <span class="rank-2">2</span>
                             <img src="../assets/imgs/icon-riven-dawnbringer.jpg">
-                            <span>Jogador 02</span>
-                            <span>9/15</span>
+                            <span class="nome_top_quiz"></span>
+                            <span class="pontuacao_top_quiz"></span>
                         </div>
-                        <div class="linha">
+                        <div class="linha" style="display: none;">
                             <span class="rank-3">3</span>
                             <img src="../assets/imgs/icon-riven-sentinel.jpg">
-                            <span>Jogador 03</span>
-                            <span>8/15</span>
+                            <span class="nome_top_quiz"></span>
+                            <span class="pontuacao_top_quiz"></span>
                         </div>
                     </div>
                 </div>
 
                 <div class="tabela">
                     <h2>Top 3 match-ups favoritadas</h2>
-                    <div class="lista">
-                        <div class="linha">
+                    <!-- O número de curtidas tem seu próprio span para manter o coração. -->
+                    <div class="lista" id="lista_top_matchups">
+                        <div class="linha" style="display: none;">
                             <span class="rank-1">1</span>
-                            <img src="../assets/icon/icon-irelia.jpg">
-                            <span>Riven vs Irelia</span>
-                            <span><img src="../assets/icon/svg-hearth.svg"> 48</span>
+                            <img class="imagem_top_matchup" alt="Campeão">
+                            <span class="nome_top_matchup"></span>
+                            <span><img src="../assets/icon/svg-hearth.svg"><span class="curtidas_top_matchup"></span></span>
                         </div>
-                        <div class="linha">
+                        <div class="linha" style="display: none;">
                             <span class="rank-2">2</span>
-                            <img src="../assets/icon/icon-renekton.jpg">
-                            <span>Riven vs Renekton</span>
-                            <span><img src="../assets/icon/svg-hearth.svg"> 41</span>
+                            <img class="imagem_top_matchup" alt="Campeão">
+                            <span class="nome_top_matchup"></span>
+                            <span><img src="../assets/icon/svg-hearth.svg"><span class="curtidas_top_matchup"></span></span>
                         </div>
-                        <div class="linha">
+                        <div class="linha" style="display: none;">
                             <span class="rank-3">3</span>
-                            <img src="../assets/icon/icon-camille.webp">
-                            <span>Riven vs Camille</span>
-                            <span><img src="../assets/icon/svg-hearth.svg"> 37</span>
+                            <img class="imagem_top_matchup" alt="Campeão">
+                            <span class="nome_top_matchup"></span>
+                            <span><img src="../assets/icon/svg-hearth.svg"><span class="curtidas_top_matchup"></span></span>
                         </div>
                     </div>
                 </div>
@@ -153,163 +158,302 @@
 </html>
 
 <script>
-    // Preenche o cabeçalho com o nome guardado no login.
     document.getElementById("nome_usuario_header").textContent = "Olá, " + sessionStorage.NOME_USUARIO;
 
-    const ctx = document.getElementById('myChart');
-    const ctx2 = document.getElementById('myChart2');
+    let canvas_jogadores = document.getElementById('myChart');
+    let canvas_acertos = document.getElementById('myChart2');
+    let verde = '#88C0A0';
+    let dourado = '#E0CC96';
+    let texto_cinza = '#AFAFAF';
+    let linha_grade = '#2A2A2A';
 
-    const verde = '#88C0A0';
-    const dourado = '#E0CC96';
-    const textoCinza = '#AFAFAF';
-    const linhaGrade = '#2A2A2A';
+    let nomes_elos = ['Unranked', 'Ferro', 'Bronze', 'Prata', 'Ouro', 'Platina', 'Esmeralda', 'Diamante', 'Mestre', 'Grão-Mestre', 'Challenger'];
+    let jogadores_por_elo = [];
+    let acertos_por_elo = [];
+    let cores_barras = [];
 
-    const labelsElo = ['Ferro', 'Bronze', 'Prata', 'Ouro', 'Platina', 'Esmeralda', 'Diamante', 'Mestre+'];
-    const jogadoresPorElo = [8, 14, 21, 34, 31, 21, 12, 7];
-
-    let maior = jogadoresPorElo[0];
-
-    for (let i = 1; i < jogadoresPorElo.length; i++) {
-        if (jogadoresPorElo[i] > maior) {
-            maior = jogadoresPorElo[i];
-        }
+    for (let i = 0; i < nomes_elos.length; i++) {
+        jogadores_por_elo.push(0);
+        acertos_por_elo.push(null);
     }
 
-    const coresBarras = [];
+    carregar_kpi_e_grafico_jogadores_por_elo();
+    preencher_kpi_media_quiz();
+    carregar_dados_grafico_media_por_elo();
+    preencher_kpi_tentativas_quiz();
+    preencher_tabela_top_quiz();
+    preencher_tabela_top_matchups();
 
-    for (let i = 0; i < jogadoresPorElo.length; i++) {
-        if (jogadoresPorElo[i] == maior) {
-            coresBarras.push(dourado);
-        } else {
-            coresBarras.push(verde);
-        }
-    }
+    function carregar_kpi_e_grafico_jogadores_por_elo() {
 
-    // PLUGIN 1: escreve o número em cima de cada barra
-    const valoresNasBarras = {
-        id: 'valoresNasBarras',
-        afterDatasetsDraw: function (chart) {
-            const caneta = chart.ctx;
-            caneta.fillStyle = textoCinza;
-            caneta.font = '13px DM Sans';
-            caneta.textAlign = 'center';
-
-            const barras = chart.getDatasetMeta(0).data;
-
-            for (let i = 0; i < barras.length; i++) {
-                caneta.fillText(jogadoresPorElo[i], barras[i].x, barras[i].y - 6);
+        fetch('/rank/listar_jogadores_por_elo').then(function (resposta) {
+            if (resposta.ok) {
+                return resposta.json();
+            } else {
+                throw new Error('Não foi possível consultar os jogadores por elo.');
             }
-        }
-    };
+        }).then(function (dados) {
+            // Procura cada elo retornado pela API e preenche sua posição no array.
+            for (let i = 0; i < dados.length; i++) {
+                for (let j = 0; j < nomes_elos.length; j++) {
+                    if (dados[i].elo == nomes_elos[j]) {
+                        jogadores_por_elo[j] = Number(dados[i].quantidade_cadastrado);
+                    }
+                }
+            }
 
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: labelsElo,
-            datasets: [{
-                label: 'Jogadores',
-                data: jogadoresPorElo,
-                backgroundColor: coresBarras,
-                borderWidth: 0,
-                borderRadius: 6
-            }]
-        },
-        options: {
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { display: false }
+            // Encontra o maior total;
+            let maior_quantidade = 0;
+            let elo_mais_jogadores = 'Sem cadastrados';
+            for (let i = 0; i < jogadores_por_elo.length; i++) {
+                if (jogadores_por_elo[i] > maior_quantidade) {
+                    maior_quantidade = jogadores_por_elo[i];
+                    elo_mais_jogadores = nomes_elos[i];
+                }
+            }
+            document.getElementById('kpi_elo_mais_jogadores').textContent = elo_mais_jogadores;
+
+            // Destaca todas as barras com o maior número como dourado e as outras como verde.
+            for (let i = 0; i < jogadores_por_elo.length; i++) {
+                if (jogadores_por_elo[i] == maior_quantidade) {
+                    cores_barras.push(dourado);
+                } else {
+                    cores_barras.push(verde);
+                }
+            }
+            criar_grafico_jogadores_por_elo();
+        }).catch(function (erro) {
+            // Avisa sobre a falha sem apresentar um número fictício na KPI.
+            document.getElementById('kpi_elo_mais_jogadores').textContent = 'Indisponível';
+            console.log(erro);
+        });
+    }
+
+    function preencher_kpi_media_quiz() {
+        // Consulta a média de todas as tentativas para preencher a KPI.
+        fetch('/rank/consultar_media_quiz').then(function (resposta) {
+            if (resposta.ok) {
+                return resposta.json();
+            } else {
+                throw new Error('Não foi possível consultar a média do quiz.');
+            }
+        }).then(function (dados) {
+            // Guarda a média retornada, formata com uma casa decimal e preenche a KPI.
+            let media_quiz = Number(dados[0].pontuacao_media);
+            let texto_da_media = media_quiz.toFixed(1).replace('.', ',');
+            document.getElementById('kpi_media_quiz').textContent = texto_da_media + '/15';
+        }).catch(function (erro) {
+            document.getElementById('kpi_media_quiz').textContent = 'Indisponível';
+            console.log(erro);
+        });
+    }
+
+    function preencher_kpi_tentativas_quiz() {
+        // O resultado é um array com uma linha contendo o total de tentativas.
+        fetch('/rank/consultar_tentativas_quiz').then(function (resposta) {
+            if (resposta.ok) {
+                return resposta.json();
+            } else {
+                throw new Error('Não foi possível consultar as tentativas do quiz.');
+            }
+        }).then(function (dados) {
+            document.getElementById('kpi_tentativas_quiz').textContent = dados[0].tentativas;
+        }).catch(function (erro) {
+            document.getElementById('kpi_tentativas_quiz').textContent = 'Indisponível';
+            console.log(erro);
+        });
+    }
+
+    function carregar_dados_grafico_media_por_elo() {
+        // Preenche as médias mantendo a mesma ordem de nomes usada no gráfico de jogadores.
+        fetch('/rank/listar_media_quiz_por_elo').then(function (resposta) {
+            if (resposta.ok) {
+                return resposta.json();
+            } else {
+                throw new Error('Não foi possível consultar a média do quiz por elo.');
+            }
+        }).then(function (dados) {
+            for (let i = 0; i < dados.length; i++) {
+                for (let j = 0; j < nomes_elos.length; j++) {
+                    if (dados[i].elo == nomes_elos[j]) {
+                        acertos_por_elo[j] = Number(dados[i].pontuacao_media);
+                    }
+                }
+            }
+
+            // Desenha o gráfico somente com as médias por elo recebidas.
+            criar_grafico_media_por_elo();
+        }).catch(function (erro) {
+            console.log(erro);
+        });
+    }
+
+    function preencher_tabela_top_quiz() {
+        // Busca o ranking já ordenado pela melhor pontuação de cada jogador.
+        fetch('/rank/listar_top_quiz').then(function (resposta) {
+            if (resposta.ok) {
+                return resposta.json();
+            } else {
+                throw new Error('Não foi possível consultar o top 3 do quiz.');
+            }
+        }).then(function (dados) {
+            // Guarda o array recebido e pega as linhas e os textos existentes no HTML.
+            let top_quiz = dados;
+            let linhas = document.querySelectorAll('#lista_top_quiz .linha');
+            let nomes = document.querySelectorAll('#lista_top_quiz .nome_top_quiz');
+            let pontuacoes = document.querySelectorAll('#lista_top_quiz .pontuacao_top_quiz');
+
+            // Cada posição do array preenche uma linha, mantendo as imagens de Riven.
+            for (let i = 0; i < top_quiz.length; i++) {
+                nomes[i].textContent = top_quiz[i].nome;
+                pontuacoes[i].textContent = top_quiz[i].pontuacao + '/15';
+                linhas[i].style.display = 'flex';
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        });
+    }
+
+    function preencher_tabela_top_matchups() {
+        // Guarda o ranking para usá-lo depois que as imagens dos campeões chegarem.
+        let top_matchups = [];
+        fetch('/rank/listar_top_matchups').then(function (resposta) {
+            if (resposta.ok) {
+                return resposta.json();
+            } else {
+                throw new Error('Não foi possível consultar o top 3 de match-ups.');
+            }
+        }).then(function (dados) {
+            top_matchups = dados;
+            // Esta rota existente retorna os nomes e as imagens dos campeões.
+            return fetch('/campeao/listar_campeao');
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                return resposta.json();
+            } else {
+                throw new Error('Não foi possível consultar as imagens dos campeões.');
+            }
+        }).then(function (campeoes) {
+            // Pega os elementos que serão preenchidos, sem alterar o ícone de coração.
+            let linhas = document.querySelectorAll('#lista_top_matchups .linha');
+            let nomes = document.querySelectorAll('#lista_top_matchups .nome_top_matchup');
+            let curtidas = document.querySelectorAll('#lista_top_matchups .curtidas_top_matchup');
+            let imagens = document.querySelectorAll('#lista_top_matchups .imagem_top_matchup');
+
+            for (let i = 0; i < top_matchups.length; i++) {
+                nomes[i].textContent = 'Riven vs ' + top_matchups[i].nome;
+                curtidas[i].textContent = top_matchups[i].quantidade_curtida;
+
+                // Procura pelo nome do campeão e usa sua imagem cadastrada no banco.
+                for (let j = 0; j < campeoes.length; j++) {
+                    if (top_matchups[i].nome == campeoes[j].nome) {
+                        imagens[i].src = campeoes[j].loadingScreenIMG;
+                        imagens[i].alt = campeoes[j].nome;
+                    }
+                }
+                linhas[i].style.display = 'flex';
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        });
+    }
+
+    function criar_grafico_jogadores_por_elo() {
+        // O plugin escreve a quantidade real em cima de cada barra.
+        let valores_nas_barras = {
+            id: 'valores_nas_barras',
+            // O Chart.js chama esta função depois de desenhar as barras.
+            afterDatasetsDraw: function (chart) {
+                // ctx é a ferramenta de desenho do canvas.
+                let caneta = chart.ctx;
+                // Escolhe a cor, o tamanho da fonte e o alinhamento dos números.
+                caneta.fillStyle = texto_cinza;
+                caneta.font = '13px DM Sans';
+                caneta.textAlign = 'center';
+
+                // Pega as posições das barras do primeiro conjunto de dados (posição 0).
+                let barras = chart.getDatasetMeta(0).data;
+
+                for (let i = 0; i < barras.length; i++) {
+                    // Escreve a quantidade na posição x da barra, 6 pixels acima do topo.
+                    caneta.fillText(jogadores_por_elo[i], barras[i].x, barras[i].y - 6);
+                }
+            }
+        };
+
+        // Desenha o gráfico com os arrays preenchidos pela consulta.
+        new Chart(canvas_jogadores, {
+            type: 'bar',
+            data: {
+                labels: nomes_elos,
+                datasets: [{
+                    label: 'Jogadores',
+                    data: jogadores_por_elo,
+                    backgroundColor: cores_barras,
+                    borderWidth: 0,
+                    borderRadius: 6
+                }]
             },
-            scales: {
-                x: {
-                    grid: { display: false },
-                    ticks: { color: textoCinza }
+            options: {
+                maintainAspectRatio: false,
+                layout: { padding: { top: 16 } },
+                plugins: {
+                    legend: { display: false }
                 },
-                y: {
-                    beginAtZero: true,
-                    max: 40,
-                    ticks: { stepSize: 10, color: textoCinza },
-                    grid: { color: linhaGrade }
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: texto_cinza }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        // Sem máximo fixo, o eixo acompanha a quantidade de cadastrados.
+                        ticks: { precision: 0, color: texto_cinza },
+                        grid: { color: linha_grade }
+                    }
                 }
-            }
-        },
-        plugins: [valoresNasBarras]
-    });
-
-    const acertosPorElo = [3.5, 4.3, 5.3, 6.2, 7.0, 7.9, 8.6, 9.2];
-
-    let soma = 0;
-
-    for (let i = 0; i < acertosPorElo.length; i++) {
-        soma += acertosPorElo[i];
-    }
-
-    const mediaGeral = soma / acertosPorElo.length;
-
-    const textoDaMedia = mediaGeral.toFixed(1).replace('.', ',');
-
-    const linhaMedia = [];
-
-    for (let i = 0; i < acertosPorElo.length; i++) {
-        linhaMedia.push(mediaGeral);
-    }
-
-    // PLUGIN 2: escreve "média geral X" em cima da linha tracejada
-    const textoMedia = {
-        id: 'textoMedia',
-        afterDatasetsDraw: function (chart) {
-            const caneta = chart.ctx;
-            const y = chart.scales.y.getPixelForValue(mediaGeral);
-
-            caneta.fillStyle = dourado;
-            caneta.font = 'bold 13px DM Sans';
-            caneta.textAlign = 'left';
-            caneta.fillText('média geral ' + textoDaMedia, chart.chartArea.left + 10, y - 8);
-        }
-    };
-
-    new Chart(ctx2, {
-        type: 'line',
-        data: {
-            labels: labelsElo,
-            datasets: [
-                {
-                    label: 'Acertos médios',
-                    data: acertosPorElo,
-                    borderColor: verde,
-                    backgroundColor: 'rgba(136, 192, 160, 0.15)',
-                    pointBackgroundColor: verde,
-                    pointRadius: 4,
-                    borderWidth: 2,
-                    fill: true
-                },
-                {
-                    label: 'Média geral',
-                    data: linhaMedia,
-                    borderColor: '#8A8A8A',
-                    borderDash: [4, 4],
-                    borderWidth: 1,
-                    pointRadius: 0
-                }
-            ]
-        },
-        options: {
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { display: false }
             },
-            scales: {
-                x: {
-                    grid: { display: false },
-                    ticks: { color: textoCinza }
+            plugins: [valores_nas_barras]
+        });
+    }
+
+    function criar_grafico_media_por_elo() {
+        // Usa o array de acertos por elo retornados pelo banco, de 0 a 15.
+        new Chart(canvas_acertos, {
+            type: 'line',
+            data: {
+                labels: nomes_elos,
+                datasets: [
+                    {
+                        label: 'Acertos médios',
+                        data: acertos_por_elo,
+                        borderColor: verde,
+                        backgroundColor: 'rgba(136, 192, 160, 0.15)',
+                        pointBackgroundColor: verde,
+                        pointRadius: 4,
+                        borderWidth: 2,
+                        fill: true
+                    }
+                ]
+            },
+            options: {
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
                 },
-                y: {
-                    min: 0,
-                    max: 10,
-                    ticks: { stepSize: 5, color: textoCinza },
-                    grid: { color: linhaGrade }
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: texto_cinza }
+                    },
+                    y: {
+                        min: 0,
+                        max: 15,
+                        ticks: { stepSize: 5, color: texto_cinza },
+                        grid: { color: linha_grade }
+                    }
                 }
             }
-        },
-        plugins: [textoMedia]
-    });
+        });
+    }
 </script>
