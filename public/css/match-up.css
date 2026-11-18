@@ -135,7 +135,6 @@
 }
 
 .painel-match{
-    /* Organiza os cards em linhas e permite quebrar a linha quando faltar espaço. */
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
@@ -143,9 +142,7 @@
     gap: 16px;
     color: #AFAFAF;
     flex: 1;
-    /* Permite que o painel caiba no espaço restante do layout flex. */
     min-height: 0;
-    /* Mostra rolagem vertical somente quando os cards não couberem no painel. */
     overflow-y: auto;
     border: solid 2px #3C3C3C;
     border-radius: 16px;
@@ -153,7 +150,6 @@
     padding: 20px 20px 20px 20px;
 }
 
-/* Cada botão contém a imagem acima e o nome do campeão abaixo. */
 .card_campeao {
     display: flex;
     flex-direction: column;
@@ -172,15 +168,12 @@
     width: 110%;
     height: 130px;
     object-fit: cover;
-    /* Centraliza o zoom e direciona o recorte para a parte superior do personagem. */
     align-self: center;
-    object-position: center 18%;
-    /* Reduz a saturação e suaviza a mudança ao passar o mouse no card. */
+    object-position: center 15%;
     filter: saturate(0.5);
     transition: 0.3s;
 }
 
-/* Recupera a saturação original da imagem durante o hover do card. */
 .card_campeao:hover img {
     filter: saturate(0.7);
     transform: scale(1.02);
@@ -192,9 +185,7 @@
     font-weight: bold;
 }
 
-/* Destaca o card sob o mouse, pelo teclado ou selecionado pelo usuário. */
 .card_campeao:hover,
-.card_campeao:focus-visible,
 .card_campeao_selecionado {
     border-color: #b31a45;
     background-color: #3a1620;

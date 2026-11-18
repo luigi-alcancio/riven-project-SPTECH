@@ -175,7 +175,6 @@
     transform: scale(1.05);
 }
 
-/* A caixa ocupa a parte inferior do card e começa escondida. */
 .edicao_rank {
     display: none;
     flex-direction: column;
@@ -200,7 +199,6 @@
     color: #d8d8d8;
 }
 
-/* Organiza Salvar e Cancelar lado a lado. */
 .botoes_edicao_rank {
     display: flex;
     gap: 8px;
@@ -327,7 +325,6 @@
     gap: 30px;
 }
 
-/* Os cards são links, mas mantêm a aparência dos cards originais. */
 .caixa-card-match a{
     text-decoration: none;
     min-width: 0;
@@ -358,7 +355,6 @@
 
 }
 
-/* A mesma classe atende qualquer campeão; o JavaScript define a imagem. */
 .card_favorito{
     border-radius: 10px;
     border: solid 2px #3C3C3C;

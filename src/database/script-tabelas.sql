@@ -57,14 +57,3 @@ CREATE TABLE curtida_campeao (
   CONSTRAINT fk_curtida_campeao FOREIGN KEY (campeao_id)
     REFERENCES campeao(id)
 );
-
-INSERT INTO campeao VALUES
-(NULL, 'Aatrox', 'A espada Darkin', 'Lutador', 'Média', 
-'https://images7.alphacoders.com/977/thumb-1920-977848.jpg', 
-'https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/c/ce/Skin_Loading_Screen_Classic_Aatrox.jpg/revision/latest/scale-to-width-down/200?cb=20191212054334',
-'Use seu Q e E reativamente, para desviar e dar dano ao mesmo tempo', 'Quanto mais você encurtar, melhor! aatrox é fragil se chegar nele andando',
-'Guarde seu E para desviar do 3Q dele, assim negando mais parte do dano', 
-'Vá para moita nivel 1 , e stack seu Q no tempo que a wave chegar, use seu 3 Q para tirar o osso revestido e jogue com pressao na wave. Todas as trocas que você encurtar, você vence',
-'A partir do nível 6, qualquer gap você consegue dar 100-0, enxergue oportunidade de encurtar ou com ignite, ou com flash, principalmente se ele estiver com osso revestido em CD, todo all win você vence.',
-'A partir desse ponto, você é mais forte na side e nas fights se tiver um pouco de vantagem, ele precisa coinflipar, tente sempre dar match onde ele estiver. Caso ele jogue side, puxe e dive ou puxe e rota para o mid.',
-'Deixe SEMPRE imperceptível se você irá usar o Q para entrar nele e dar dano ou sair.');
